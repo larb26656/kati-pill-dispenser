@@ -59,7 +59,28 @@ def set_custom_msg(text_to_talk):
     tts = gTTS(text=text_to_talk,lang=language)
     tts.save(get_directory_with_set_language('custom_msg_temp.mp3',language_directory))
     mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3',language_directory))
-    
+
+def set_custom_msg_with_filename(text_to_talk,filename):
+    language=detect(text_to_talk)
+    if(language=="th"):
+        language_directory="thai"
+    else:
+        language_directory="english"
+    tts = gTTS(text=text_to_talk,lang=language)
+    tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
+    mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
+
+def set_calculator_enable_ans():
+    mixer.music.load(get_directory('calculator_enable_ans.mp3'))
+
+def set_calculator_disable_ans():
+    mixer.music.load(get_directory('calculator_disable_ans.mp3'))
+
+def set_number_ans(number):
+    tts = gTTS(text=number,lang=language_service.get_lang_short())
+    tts.save(get_directory('number_ans.mp3'))
+    mixer.music.load(get_directory('number_ans.mp3'))
+
 def set_time_ans():
     time = language_service.get_time_ans_text()
     tts = gTTS(text=time,lang=language_service.get_lang_short())
@@ -82,4 +103,3 @@ def set_weather_ans():
     tts.save(get_directory('temperature_ans.mp3'))
     mixer.music.load(get_directory('temperature_ans.mp3'))
 
-    

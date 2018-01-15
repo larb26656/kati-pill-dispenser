@@ -20,7 +20,7 @@ def search_data():
         if(get_kati_status()=="free"):
                 return get_conversation(query)
         else:
-                return "kati is busy"
+                return "(busy)"
 
 @app.route('/get_ip')
 def get_ip():
@@ -59,6 +59,10 @@ def get_conversation(text):
                     set_kati_face_status("normal")
                     return "weather"
                 elif(r['Conversation_type'] == "calculator"):
+                    set_kati_face_status("talk")
+                    text_to_speech_service.set_calculator_enable_ans()
+                    text_to_speech_service.play_with_delay()
+                    set_kati_face_status("normal")
                     executor.submit(calculator_enable)
                     return "cal enable"
         else:
@@ -69,8 +73,6 @@ def get_conversation(text):
             return "not found"
         cur.close()
         conn.close()
-        
-
 
 def set_kati_status(text):
         f = open('data/kati_status.txt','w',encoding='utf-8')
@@ -97,10 +99,16 @@ def get_kati_face_status():
 def calculator_enable():
     global calculator_enable_status
     calculator_enable_status = True
-    time.sleep(30)
+    for num in range(1, 30):
+        if(calculator_enable_status):
+            pass
+        else:
+            return None
+        time.sleep(1)
     calculator_enable_status = False
 
 def calculator(quest):
+    global calculator_enable_status
     question = str(quest)
     question = question.replace("บวก","+")
     question = question.replace("ลบ","-")
@@ -111,8 +119,19 @@ def calculator(quest):
     question = question.replace("multiply","*")
     question = question.replace("divide","/")
     try:
+        calculator_enable_status = False
+        set_kati_face_status("talk")
+        text_to_speech_service.set_number_ans(str(eval(question)))
+        text_to_speech_service.play_with_delay()
+        set_kati_face_status("normal")
         return str(eval(question))
+
     except SyntaxError:
-        return SyntaxError
+        set_kati_face_status("talk")
+        text_to_speech_service.set_calculator_disable_ans()
+        text_to_speech_service.play_with_delay()
+        set_kati_face_status("normal")
+        calculator_enable_status = False
+        return "cal disable"
 
 app.run(debug=True, host='0.0.0.0')

@@ -34,12 +34,6 @@ def get_provinces_name_english():
     cur.close()
     conn.close()
 
-def get_time_ans_text():
-    if(get_lang()=="thai"):
-        return "ขณะนี้เวลา "+strftime("%H:%M:%S")
-    else:
-        return "It's "+strftime("%H:%M:%S")+"."
-
 def get_month_thai_text(num_of_month):
     if(int(num_of_month)==1):
         return "มกราคม"
@@ -103,13 +97,13 @@ def get_time_ans_text():
     if(get_lang()=="thai"):
         return "ขณะนี้เวลา "+strftime("%H:%M:%S")
     elif(get_lang()=="english"):
-        return "it's "+strftime("%H:%M:%S")
+        return "it's "+strftime("%H:%M:%S")+"."
 
 def get_date_ans_text():
     if(get_lang()=="thai"):
         return "วันที่ "+strftime("%d")+" "+get_month_thai_text(strftime("%m"))+" "+get_year_thai_format(strftime("%Y"))
     elif(get_lang()=="english"):
-        return "Today is " + strftime("%d") + " " + get_month_english_text(strftime("%m")) + " " + strftime("%Y")
+        return "Today is " + strftime("%d") + " " + get_month_english_text(strftime("%m")) + " " + strftime("%Y")+"."
 
 def get_temperature_ans_text(low_temperature,high_temperature):
     if(get_lang()=="thai"):
