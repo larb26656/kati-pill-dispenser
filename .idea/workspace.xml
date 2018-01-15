@@ -21,47 +21,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notification_service_v.2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/notification_service_v.2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="757" column="0" lean-forward="false" selection-start-line="757" selection-start-column="0" selection-end-line="757" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="stepmotor_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-791">
+            <state relative-caret-position="255">
               <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket_service.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="socket_service.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/socket_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1525">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="158">
+              <caret line="110" column="47" lean-forward="true" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notification_service.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/notification_service.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="248" column="41" lean-forward="true" selection-start-line="248" selection-start-column="41" selection-end-line="248" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +46,8 @@
       <file leaf-file-name="language_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/language_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="91" column="21" lean-forward="false" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="21" />
+            <state relative-caret-position="226">
+              <caret line="113" column="28" lean-forward="false" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="28" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -82,21 +58,11 @@
       <file leaf-file-name="text_to_speech_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/text_to_speech_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+            <state relative-caret-position="243">
+              <caret line="82" column="58" lean-forward="true" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stepmotor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../kati systemfile/kati finalsss/stepmotor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3021">
-              <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -156,13 +122,13 @@
         <option value="$PROJECT_DIR$/weather.py" />
         <option value="$PROJECT_DIR$/weathertest.py" />
         <option value="$PROJECT_DIR$/notification_service.py" />
-        <option value="$PROJECT_DIR$/text_to_speech_service.py" />
-        <option value="$PROJECT_DIR$/language_service.py" />
         <option value="$PROJECT_DIR$/socket_service.py" />
+        <option value="$PROJECT_DIR$/language_service.py" />
+        <option value="$PROJECT_DIR$/text_to_speech_service.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-27" />
     <option name="y" value="30" />
     <option name="width" value="1302" />
@@ -341,7 +307,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20131771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -349,7 +315,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30590063" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30590063" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30590063" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -709,37 +675,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/notification_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-101">
+          <caret line="248" column="41" lean-forward="true" selection-start-line="248" selection-start-column="41" selection-end-line="248" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../kati systemfile/kati finalsss/stepmotor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3021">
+        <state relative-caret-position="-2950">
           <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/text_to_speech_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/language_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="91" column="21" lean-forward="false" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/notification_service_v.2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="1722">
           <caret line="757" column="0" lean-forward="false" selection-start-line="757" selection-start-column="0" selection-end-line="757" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -755,9 +711,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/text_to_speech_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="82" column="58" lean-forward="true" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/language_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="113" column="28" lean-forward="false" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-791">
+        <state relative-caret-position="255">
           <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
           <folding />
         </state>
@@ -765,20 +741,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/socket_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1525">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="158">
+          <caret line="110" column="47" lean-forward="true" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notification_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="248" column="41" lean-forward="true" selection-start-line="248" selection-start-column="41" selection-end-line="248" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>

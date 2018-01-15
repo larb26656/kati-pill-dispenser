@@ -5,6 +5,7 @@ import time
 import language_service
 from langdetect import detect
 from time import strftime
+from weather import Weather
 
 mixer.init()
 
@@ -13,6 +14,9 @@ def get_directory(file_name):
 
 def get_directory_with_set_language(file_name,language):
     return str("voice_sound/"+language+"/"+file_name)
+
+def convert_fahrenheit_to_celsius(fahrenheit):
+    return str(round((int(fahrenheit)-32)/2));
 
 def play():
     mixer.music.play()
@@ -67,5 +71,15 @@ def set_date_ans():
     tts = gTTS(text=date,lang=language_service.get_lang_short())
     tts.save(get_directory('date_ans.mp3'))
     mixer.music.load(get_directory('date_ans.mp3'))
+
+def set_weather_ans():
+    weather = Weather()
+    location = weather.lookup_by_location(language_service.get_provinces_name_english())
+    condition = location.condition()
+    forecasts = location.forecast()
+    temperature = language_service.get_temperature_ans_text(convert_fahrenheit_to_celsius(forecasts[0].low()),convert_fahrenheit_to_celsius(forecasts[0].high()))
+    tts = gTTS(text=temperature,lang=language_service.get_lang_short())
+    tts.save(get_directory('temperature_ans.mp3'))
+    mixer.music.load(get_directory('temperature_ans.mp3'))
 
     

@@ -1,10 +1,11 @@
 import sys
 import pymysql
+import connect_service
 from time import strftime
 import datetime
 
 def get_lang():
-    conn = pymysql.connect(host='127.0.0.1', user='root', passwd=None, db='kati',charset='utf8')
+    conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
     cur.execute("SELECT * FROM robot_setting ")
     for r in cur:
@@ -13,7 +14,7 @@ def get_lang():
     conn.close()
 
 def get_lang_short():
-    conn = pymysql.connect(host='127.0.0.1', user='root', passwd=None, db='kati',charset='utf8')
+    conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
     cur.execute("SELECT * FROM robot_setting ")
     for r in cur:
@@ -21,6 +22,15 @@ def get_lang_short():
             return "th"
         elif(str(r['Robot_lang'])=="english"):
             return "en"
+    cur.close()
+    conn.close()
+
+def get_provinces_name_english():
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("SELECT * FROM `robot_setting` INNER JOIN provinces ON robot_setting.Provinces_id = provinces.Provinces_id")
+    for r in cur:
+        return str(r['Provinces_name_english'])
     cur.close()
     conn.close()
 
@@ -100,3 +110,9 @@ def get_date_ans_text():
         return "วันที่ "+strftime("%d")+" "+get_month_thai_text(strftime("%m"))+" "+get_year_thai_format(strftime("%Y"))
     elif(get_lang()=="english"):
         return "Today is " + strftime("%d") + " " + get_month_english_text(strftime("%m")) + " " + strftime("%Y")
+
+def get_temperature_ans_text(low_temperature,high_temperature):
+    if(get_lang()=="thai"):
+        return "สภาพอากาศวันนี้มีอุณหภูมิต่ำสุดคือ "+low_temperature+"องศาเซลเซียส และมีอุณหภูมิสูงสุดคือ "+high_temperature+" องศาเซลเซียส"
+    elif(get_lang()=="english"):
+        return "Today weather have low temperature is "+low_temperature+" celsius and high temperature is "+high_temperature+" celsius."

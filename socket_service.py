@@ -4,7 +4,6 @@ from pprint import pprint
 from flask import Flask, jsonify, request, abort
 from time import strftime
 import pymysql
-from weather import Weather
 import text_to_speech_service
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -54,11 +53,11 @@ def get_conversation(text):
                     set_kati_face_status("normal")
                     return "date"
                 elif(r['Conversation_type'] == "weather"):
-                    weather = Weather()
-                    location = weather.lookup_by_location(get_provinces_name_english())
-                    condition = location.condition()
-                    forecasts = location.forecast()
-                    return str("อุณหภูมิต่ำสุด "+str(convert_fahrenheit_to_celsius(forecasts[0].low()))+" อุณหภูมิสูงสุด "+str(convert_fahrenheit_to_celsius(forecasts[0].high())))
+                    set_kati_face_status("talk")
+                    text_to_speech_service.set_weather_ans()
+                    text_to_speech_service.play_with_delay()
+                    set_kati_face_status("normal")
+                    return "weather"
                 elif(r['Conversation_type'] == "calculator"):
                     executor.submit(calculator_enable)
                     return "cal enable"
@@ -94,18 +93,6 @@ def get_kati_face_status():
         data = f.read()
         return data
         f.close()
-
-def get_provinces_name_english():
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `robot_setting` INNER JOIN provinces ON robot_setting.Provinces_id = provinces.Provinces_id")
-    for r in cur:
-        return str(r['Provinces_name_english'])
-    cur.close()
-    conn.close()
-
-def convert_fahrenheit_to_celsius(fahrenheit):
-    return str(round((int(fahrenheit)-32)/2));
 
 def calculator_enable():
     global calculator_enable_status
