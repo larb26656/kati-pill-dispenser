@@ -139,48 +139,44 @@ class ServerThread(core.QThread):
         cur.close()
         conn.close()
 
-    def get_time_list_every_15_mins(self):
+    def get_time_list(self):
         global kati_status
         while True:
             self.get_schedule_time_list()
             self.get_memo_time_list()
-            if(self.schedule_time_diff == "" and self.memo_time_diff == ""):
-                self.set_kati_status("free")
-            elif(self.schedule_time_diff != "" and self.memo_time_diff == ""):
-                self.set_kati_status("schedule")
-            elif(self.memo_time_diff != "" and self.schedule_time_diff == ""):
-                self.set_kati_status("memo")
-            else:
-                self.set_kati_status("schedule")
+            if(self.get_kati_status()[:14]=="pill_dispensor"):
+                if(self.schedule_time_diff == "" and self.memo_time_diff == ""):
+                    self.set_kati_status("free")
+                elif(self.schedule_time_diff != "" and self.memo_time_diff == ""):
+                    self.set_kati_status("schedule")
+                elif(self.memo_time_diff != "" and self.schedule_time_diff == ""):
+                    self.set_kati_status("memo")
+                else:
+                    self.set_kati_status("schedule")
             print(self.get_kati_status())
-            time.sleep(15)
+            time.sleep(1)
   
 
     def start_clock(self):
         self.set_kati_status("free")
         self.set_kati_face_status("normal")
         global kati_status,speak_status,ultrasonic_step,behavior_status,has_run
-        background_thread = Thread(target=self.get_time_list_every_15_mins, args=())
+        background_thread = Thread(target=self.get_time_list, args=())
         background_thread.start()
-        self.face_status = False
-        self.speak1_status = False
-        self.speak2_status = False
-        self.speak3_status = False
-        self.speak4_status = False
-        self.speak5_status = False
-        self.speak6_status = False
-        
-        """ speak1 = run_once(alarm_pill_one)
-        speak2 = run_once(alarm_pill_two)
-        speak3 = run_once(alarm_pill_three)
-        speak4 = run_once(alarm_pill_four)
-        speak5 = run_once(alarm_pill_five) """
-        self.count1 = 1
-        self.count2 = 1
-        self.count3 = 1
-        self.count4 = 1
+
         while True:
             if(self.get_kati_status() == "free"):
+                self.face_status = False
+                self.speak1_status = False
+                self.speak2_status = False
+                self.speak3_status = False
+                self.speak4_status = False
+                self.speak5_status = False
+                self.speak6_status = False
+                self.count1 = 1
+                self.count2 = 1
+                self.count3 = 1
+                self.count4 = 1
                 print(strftime("%Y-%m-%d %H:%M:%S"))
                 if(self.get_kati_face_status() == "normal"):
                     while(self.get_kati_face_status() == "normal" and self.get_kati_status() == "free"):
@@ -313,7 +309,107 @@ class ServerThread(core.QThread):
                 self.set_kati_status("free")
                 self.count1 = 1
                 stepmotor_service.insert_memo_log(self.memo_id)
-            time.sleep(1)   
+
+            elif(self.get_kati_status()[:14] == "pill_dispenser"):
+                self.pill_id = self.get_kati_status()[14:]
+                self.main_loop_status = True
+                self.face_status = False
+                self.speak1_status = False
+                self.speak2_status = False
+                self.speak3_status = False
+                self.speak4_status = False
+                self.speak5_status = False
+                self.speak6_status = False
+                self.count1 = 1
+                self.count2 = 1
+                self.count3 = 1
+                self.count4 = 1
+                while(self.main_loop_status==True):
+                    print("ring")
+                    if(self.ultrasonic_step == '1'):
+                        print("wait")
+                        if(self.speak1_status == False):
+                            self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
+                            text_to_speech_service.set_msg_pill_found_alarm()
+                            text_to_speech_service.play_loop()
+                            self.speak1_status = True
+                        if(infrared_dummy.get_distance_less()):
+                            self.count1=self.count1+1
+                            print(self.count1)
+                            print("1")
+                            if(self.count1 == 3):
+                                print("step1 pass")
+                                self.ultrasonic_step = '2'
+                    elif(self.ultrasonic_step == '2'):
+                        if(ultrasonic_dummy.get_distance_less()):
+                            self.count2=self.count2+1
+                            print("2")
+                            if(self.count2 == 3):
+                                print("step2 pass")
+                                self.ultrasonic_step = '3'
+                                if(self.speak3_status == False):
+                                    self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
+                                    text_to_speech_service.set_msg_pill_dispensing_alarm()
+                                    text_to_speech_service.play_loop()
+                                    self.speak3_status = True
+                                stepmotor_service.pill_dispenser_with_pill_id(self.pill_id)
+                                if(self.speak4_status == False):
+                                    self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
+                                    text_to_speech_service.set_msg_put_glass_near_alarm()
+                                    text_to_speech_service.play_loop()
+                                    self.speak4_status = True
+                                #จ่ายยาลงมา
+                        else:
+                            if(self.speak2_status == False):
+                                self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
+                                text_to_speech_service.set_msg_put_glass_far_alarm()
+                                text_to_speech_service.play_loop()
+                                self.speak2_status = True
+                            print("test1")
+                    elif(self.ultrasonic_step == '3'):
+                        if(ultrasonic_dummy.get_distance_more()):
+                            self.count3=self.count3+1
+                            print("3")
+                            if(self.count3 == 3):
+                                print("step3 pass")
+                                self.ultrasonic_step = '4'
+                                if(self.speak5_status == False):
+                                    self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
+                                    text_to_speech_service.set_msg_put_glass_far_after_take_pill_alarm()
+                                    text_to_speech_service.play_loop()
+                                    self.speak5_status = True
+                        else:
+                            print("sss")
+                    else:
+                        if(ultrasonic_dummy.get_distance_less()):
+                            self.count4=self.count4+1
+                            print("aaaa")
+                            if(self.count4 == 3):
+                                self.behavior_status = True
+                                break
+                    time.sleep(1)
+                self.speak1_status = False
+                self.speak2_status = False
+                self.speak3_status = False
+                self.speak4_status = False
+                self.speak5_status = False
+                self.count1 = 1
+                self.count2 = 1
+                self.count3 = 1
+                self.count4 = 1
+                """if(self.behavior_status):
+                    notification_service.sent_all_behavior_took_pill(self.schedule_id)
+                else:
+                    notification_service.sent_all_behavior_forgot_take_pill(self.schedule_id)"""
+                self.behavior_status = False
+                self.ultrasonic_step= '1'
+                self.set_kati_status("free")
+                text_to_speech_service.stop()
+                self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
+                self.speak_status = False
+                print("stop")
+
+            time.sleep(1)
 
         def start_server(self):
             self.i=0
