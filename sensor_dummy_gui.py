@@ -62,6 +62,8 @@ def glass_out_button_do():
     set_glass_out()
     ultrasonic_val.set(get_ultrasonic_text())
 
+set_people_gone()
+set_glass_in()
 infrared_label = Label(top,  textvariable=infrared_val)
 infrared_val.set(get_infrared_text())
 ultrasonic_label = Label(top, textvariable=ultrasonic_val)

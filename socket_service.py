@@ -6,6 +6,7 @@ from time import strftime
 import pymysql
 import text_to_speech_service
 import time
+import stepmotor_service
 from concurrent.futures import ThreadPoolExecutor
 
 calculator_enable_status = False
@@ -13,9 +14,9 @@ executor = ThreadPoolExecutor(1)
 app=Flask(__name__)
 
 
-@app.route('/sent', methods=['GET'])
+@app.route('/sent', methods=['POST'])
 def search_data():
-        query = request.args.get("text")
+        query = str(request.form['text'])
         print(query)
         if(get_kati_status()=="free"):
                 return get_conversation(query)
@@ -65,6 +66,15 @@ def get_conversation(text):
                     set_kati_face_status("normal")
                     executor.submit(calculator_enable)
                     return "cal enable"
+                elif(r['Conversation_type'] == "pill_dispenser"):
+                    if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
+                        set_kati_status("pill_dispenser" + str(r['Pill_id']))
+                    else:
+                        set_kati_face_status("talk")
+                        text_to_speech_service.set_pill_not_found_ans()
+                        text_to_speech_service.play_with_delay()
+                        set_kati_face_status("normal")
+                    return "pill_dispenser"
         else:
             set_kati_face_status("talk")
             text_to_speech_service.set_command_not_found()

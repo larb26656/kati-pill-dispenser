@@ -333,6 +333,6 @@ def sent_firebase_message_notification_in_background(message):
     sent_firebase_message_notification_thread = threading.Thread(target=sent_firebase_message_notification , args=(message,))
     sent_firebase_message_notification_thread.start()
 
-sent_firebase_pill_out_of_stock_notification(1)
+#sent_firebase_pill_out_of_stock_notification(1)
 #sent_all_behavior_forgot_take_pill_in_background(13)
 #sent_firebase_message_notification_in_background("ทดสอบแจ้งเเือนข้อความ")

@@ -49,6 +49,9 @@ def set_msg_put_glass_near_alarm():
     
 def set_msg_put_glass_far_after_take_pill_alarm():
     mixer.music.load(get_directory('put_glass_far_after_take_pill_alarm.mp3'))
+
+def set_msg_pill_found_alarm():
+    mixer.music.load(get_directory('pill_found_alarm.mp3'))
     
 def set_custom_msg(text_to_talk):
     language=detect(text_to_talk)
@@ -69,6 +72,9 @@ def set_custom_msg_with_filename(text_to_talk,filename):
     tts = gTTS(text=text_to_talk,lang=language)
     tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
     mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
+
+def set_pill_not_found_ans():
+    mixer.music.load(get_directory('pill_not_found_ans.mp3'))
 
 def set_calculator_enable_ans():
     mixer.music.load(get_directory('calculator_enable_ans.mp3'))
@@ -102,4 +108,3 @@ def set_weather_ans():
     tts = gTTS(text=temperature,lang=language_service.get_lang_short())
     tts.save(get_directory('temperature_ans.mp3'))
     mixer.music.load(get_directory('temperature_ans.mp3'))
-
