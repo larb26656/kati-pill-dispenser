@@ -43,44 +43,39 @@ def get_conversation(text):
             for r in cur:
                 if(r['Conversation_type'] == "time"):
                     set_kati_face_status("talk")
-                    text_to_speech_service.set_time_ans()
-                    text_to_speech_service.play_with_delay()
+                    text=text_to_speech_service.get_and_play_with_delay_time_ans()
                     set_kati_face_status("normal")
-                    return "time"
+                    return text
                 elif(r['Conversation_type'] == "date"):
                     set_kati_face_status("talk")
-                    text_to_speech_service.set_date_ans()
-                    text_to_speech_service.play_with_delay()
+                    text=text_to_speech_service.get_and_play_with_delay_date_ans()
                     set_kati_face_status("normal")
-                    return "date"
+                    return text
                 elif(r['Conversation_type'] == "weather"):
                     set_kati_face_status("talk")
-                    text_to_speech_service.set_weather_ans()
-                    text_to_speech_service.play_with_delay()
+                    text = text_to_speech_service.get_and_play_with_delay_weather_ans()
                     set_kati_face_status("normal")
-                    return "weather"
+                    return text
                 elif(r['Conversation_type'] == "calculator"):
                     set_kati_face_status("talk")
-                    text_to_speech_service.set_calculator_enable_ans()
-                    text_to_speech_service.play_with_delay()
+                    text = text_to_speech_service.get_and_play_with_delay_calculator_enable_ans()
                     set_kati_face_status("normal")
                     executor.submit(calculator_enable)
-                    return "cal enable"
+                    return text
                 elif(r['Conversation_type'] == "pill_dispenser"):
                     if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
+                        text = "found"
                         set_kati_status("pill_dispenser" + str(r['Pill_id']))
                     else:
                         set_kati_face_status("talk")
-                        text_to_speech_service.set_pill_not_found_ans()
-                        text_to_speech_service.play_with_delay()
+                        text = text_to_speech_service.get_and_play_with_delay_pill_not_found_ans()
                         set_kati_face_status("normal")
-                    return "pill_dispenser"
+                    return text
         else:
             set_kati_face_status("talk")
-            text_to_speech_service.set_command_not_found()
-            text_to_speech_service.play_with_delay()
+            text = text_to_speech_service.get_and_play_with_delay_command_not_found()
             set_kati_face_status("normal")
-            return "not found"
+            return text
         cur.close()
         conn.close()
 
@@ -131,17 +126,15 @@ def calculator(quest):
     try:
         calculator_enable_status = False
         set_kati_face_status("talk")
-        text_to_speech_service.set_number_ans(str(eval(question)))
-        text_to_speech_service.play_with_delay()
+        text = text_to_speech_service.get_and_play_with_delay_number_ans(str(eval(question)))
         set_kati_face_status("normal")
-        return str(eval(question))
+        return text
 
     except SyntaxError:
         set_kati_face_status("talk")
-        text_to_speech_service.set_calculator_disable_ans()
-        text_to_speech_service.play_with_delay()
+        text = text_to_speech_service.get_and_play_with_delay_calculator_disable_ans()
         set_kati_face_status("normal")
         calculator_enable_status = False
-        return "cal disable"
+        return text
 
 app.run(debug=True, host='0.0.0.0')

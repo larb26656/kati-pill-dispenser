@@ -1,4 +1,5 @@
 from pygame import mixer
+import pygame
 import pymysql
 from gtts import gTTS
 import time
@@ -6,6 +7,7 @@ import language_service
 from langdetect import detect
 from time import strftime
 from weather import Weather
+import os
 
 mixer.init()
 
@@ -29,12 +31,9 @@ def play_with_delay():
 def play_loop():
     mixer.music.play(loops = -1)
     
-def stop():   
+def stop():
     mixer.music.stop()
-    
-def set_command_not_found():
-    mixer.music.load(get_directory('comand_not_found.mp3'))
-    
+
 def set_msg_pill_alarm():
     mixer.music.load(get_directory('pill_alarm.mp3'))
     
@@ -73,38 +72,82 @@ def set_custom_msg_with_filename(text_to_talk,filename):
     tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
     mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
 
-def set_pill_not_found_ans():
+def get_and_play_with_delay_command_not_found():
+    mixer.music.load(get_directory('comand_not_found_ans.mp3'))
+    if (language_service.get_lang_short() == "th"):
+        text = "ขอโทษค่ะดิฉันไม่เข้าใจกรุณาลองอีกครั้ง"
+    elif (language_service.get_lang_short() == "en"):
+        text = "Sorry i can't understand please try again."
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
+
+def get_and_play_with_delay_pill_not_found_ans():
     mixer.music.load(get_directory('pill_not_found_ans.mp3'))
+    if(language_service.get_lang_short()=="th"):
+        text="ไม่พบยาในระบบหรือในช่องจ่ายยา"
+    elif(language_service.get_lang_short()=="en"):
+        text="Not found pill in system or slot."
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
 
-def set_calculator_enable_ans():
+def get_and_play_with_delay_calculator_enable_ans():
     mixer.music.load(get_directory('calculator_enable_ans.mp3'))
+    if (language_service.get_lang_short() == "th"):
+        text = "กรุณาพูดคำถามคณิตศาสตร์ที่ต้องการให้ดิฉันคำนวณ"
+    elif (language_service.get_lang_short() == "en"):
+        text = "Please talk math quiz do you want to calculator."
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
 
-def set_calculator_disable_ans():
+def get_and_play_with_delay_calculator_disable_ans():
     mixer.music.load(get_directory('calculator_disable_ans.mp3'))
+    if (language_service.get_lang_short() == "th"):
+        text = "รูปแบบคำถามคณิตศาสตร์ผิดพลาดกรุณาลองอีกครั้ง"
+    elif (language_service.get_lang_short() == "en"):
+        text = "Error math quiz format please try again."
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
 
-def set_number_ans(number):
+def get_and_play_with_delay_number_ans(number):
     tts = gTTS(text=number,lang=language_service.get_lang_short())
     tts.save(get_directory('number_ans.mp3'))
     mixer.music.load(get_directory('number_ans.mp3'))
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return number
 
-def set_time_ans():
-    time = language_service.get_time_ans_text()
-    tts = gTTS(text=time,lang=language_service.get_lang_short())
+def get_and_play_with_delay_time_ans():
+    text = language_service.get_time_ans_text()
+    tts = gTTS(text=text,lang=language_service.get_lang_short())
     tts.save(get_directory('time_ans.mp3'))
     mixer.music.load(get_directory('time_ans.mp3'))
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
+
     
-def set_date_ans():
-    date = language_service.get_date_ans_text()
-    tts = gTTS(text=date,lang=language_service.get_lang_short())
+def get_and_play_with_delay_date_ans():
+    text = language_service.get_date_ans_text()
+    tts = gTTS(text=text,lang=language_service.get_lang_short())
     tts.save(get_directory('date_ans.mp3'))
     mixer.music.load(get_directory('date_ans.mp3'))
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
 
-def set_weather_ans():
+def get_and_play_with_delay_weather_ans():
     weather = Weather()
     location = weather.lookup_by_location(language_service.get_provinces_name_english())
     condition = location.condition()
     forecasts = location.forecast()
-    temperature = language_service.get_temperature_ans_text(convert_fahrenheit_to_celsius(forecasts[0].low()),convert_fahrenheit_to_celsius(forecasts[0].high()))
-    tts = gTTS(text=temperature,lang=language_service.get_lang_short())
+    text = language_service.get_temperature_ans_text(convert_fahrenheit_to_celsius(forecasts[0].low()),convert_fahrenheit_to_celsius(forecasts[0].high()))
+    tts = gTTS(text=text,lang=language_service.get_lang_short())
     tts.save(get_directory('temperature_ans.mp3'))
     mixer.music.load(get_directory('temperature_ans.mp3'))
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
