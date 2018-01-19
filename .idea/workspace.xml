@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaa512f4-fe1e-4367-b8df-84285bb15cef" name="Default" comment="change receive command from GET to POST and add TTS &quot;pill found alarm&quot; and &quot;pill not found ans&quot; add pill order alarm add method to check pill is exist in the system or not">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/voice_sound/english/comand_not_found.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/voice_sound/thai/comand_not_found.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/voice_sound/thai/time_ans.mp3" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/thai/date_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/thai/date_ans.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/thai/number_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/thai/number_ans.mp3" />
+    <list default="true" id="aaa512f4-fe1e-4367-b8df-84285bb15cef" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gui_dummy.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/socket_service.py" afterPath="$PROJECT_DIR$/socket_service.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/text_to_speech_service.py" afterPath="$PROJECT_DIR$/text_to_speech_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui_service.py" afterPath="$PROJECT_DIR$/gui_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/infrared_dummy.py" afterPath="$PROJECT_DIR$/infrared_dummy.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notification_service.py" afterPath="$PROJECT_DIR$/notification_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensor_dummy_data/infrared_status.txt" afterPath="$PROJECT_DIR$/sensor_dummy_data/infrared_status.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,35 +18,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="stepmotor_service.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stepmotor_service.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+            <state relative-caret-position="270">
+              <caret line="91" column="16" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket_service.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="socket_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/socket_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="60" column="68" lean-forward="true" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+            <state relative-caret-position="-934">
+              <caret line="66" column="34" lean-forward="false" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="text_to_speech_service.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/text_to_speech_service.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="151" column="52" lean-forward="false" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,8 +43,30 @@
       <file leaf-file-name="gui_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="148" column="46" lean-forward="false" selection-start-line="148" selection-start-column="46" selection-end-line="148" selection-end-column="46" />
+            <state relative-caret-position="-2380">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notification_service.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/notification_service.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5">
+              <caret line="482" column="5" lean-forward="true" selection-start-line="482" selection-start-column="5" selection-end-line="483" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gui_dummy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gui_dummy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -77,18 +85,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insert_pill_log_firebase_notification_sent_error_log</find>
-      <find>insert_pill_log_database_notification_sent_error_log</find>
-      <find>sent_firebase_pill_out_of_stock_notification</find>
-      <find>insert_pill_log_notification</find>
-      <find>get_pill_english_commonname_with_pill_id</find>
-      <find>get_pill_thai_commonname_with_pill_log_id</find>
-      <find>insert_pill_out_of_stock_message</find>
       <find>insert_pill_almost_out_of_stock_data</find>
       <find>insert_behavior_forgot_take_pill_message</find>
       <find>sent_firebase_pill_almost_out_of_stock_notification</find>
       <find>get_pills_thai_commonname_with_schedule_id</find>
-      <find>get_pills_english_commonname_with_behavior_id</find>
       <find>get_date_time_short_with_pill_log_id</find>
       <find>sent_firebase_behavior_took_pill_notification</find>
       <find>insert_behavior_took_pill_data</find>
@@ -107,6 +107,14 @@
       <find>set_kati_status</find>
       <find>get_time_list_every_15_mins</find>
       <find>speak6_status</find>
+      <find>insert_behavior_took_pill_message</find>
+      <find>get_pills_english_commonname_with_behavior_id</find>
+      <find>get_pills_thai_commonname_with_behavior_id</find>
+      <find>insert_behavior_notification</find>
+      <find>insert_behavior_forgot_take_one_pill_message</find>
+      <find>sent_all_behavior_forgot_take_one_pill</find>
+      <find>sent_all_behavior_come_but_no_take_pill</find>
+      <find>sent_all_behavior_come_but_no_take_pill</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,17 +131,18 @@
         <option value="$PROJECT_DIR$/weather.py" />
         <option value="$PROJECT_DIR$/weathertest.py" />
         <option value="$PROJECT_DIR$/language_service.py" />
-        <option value="$PROJECT_DIR$/infrared_dummy.py" />
-        <option value="$PROJECT_DIR$/gui_dummy.py" />
-        <option value="$PROJECT_DIR$/notification_service.py" />
         <option value="$PROJECT_DIR$/senser_dummy_gui.py" />
         <option value="$PROJECT_DIR$/ultrasonic_dummy.py" />
         <option value="$PROJECT_DIR$/sensor_dummy_gui.py" />
         <option value="$PROJECT_DIR$/test sub string.py" />
-        <option value="$PROJECT_DIR$/gui_service.py" />
-        <option value="$PROJECT_DIR$/stepmotor_service.py" />
         <option value="$PROJECT_DIR$/socket_service.py" />
         <option value="$PROJECT_DIR$/text_to_speech_service.py" />
+        <option value="$PROJECT_DIR$/infrared_dummy.py" />
+        <option value="$PROJECT_DIR$/test pulse.py" />
+        <option value="$PROJECT_DIR$/notification_service.py" />
+        <option value="$PROJECT_DIR$/gui_service.py" />
+        <option value="$PROJECT_DIR$/gui_dummy.py" />
+        <option value="$PROJECT_DIR$/stepmotor_service.py" />
       </list>
     </option>
   </component>
@@ -159,6 +168,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,7 +180,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,6 +187,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\allwork\โครงงาน\git\kati_python" />
       <recent name="D:\allwork\โครงงาน\final python\kati service v.1" />
       <recent name="D:\allwork\โครงงาน\final python\firebasecloud\testgui" />
     </key>
@@ -194,7 +204,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.socket_service">
+  <component name="RunManager" selected="Python.gui_dummy">
+    <configuration name="gui_dummy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="firebasecloud" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui_dummy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="gui_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -208,6 +235,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="firebasecloud" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui_service.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="notification_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="firebasecloud" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/notification_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -246,54 +290,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="test sub string" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test sub string.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="text_to_speech_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/text_to_speech_service.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.socket_service" />
-      <item index="1" class="java.lang.String" itemvalue="Python.gui_service" />
-      <item index="2" class="java.lang.String" itemvalue="Python.sensor_dummy_gui" />
-      <item index="3" class="java.lang.String" itemvalue="Python.text_to_speech_service" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test sub string" />
+      <item index="1" class="java.lang.String" itemvalue="Python.sensor_dummy_gui" />
+      <item index="2" class="java.lang.String" itemvalue="Python.notification_service" />
+      <item index="3" class="java.lang.String" itemvalue="Python.gui_service" />
+      <item index="4" class="java.lang.String" itemvalue="Python.gui_dummy" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.socket_service" />
-        <item index="1" class="java.lang.String" itemvalue="Python.text_to_speech_service" />
-        <item index="2" class="java.lang.String" itemvalue="Python.sensor_dummy_gui" />
-        <item index="3" class="java.lang.String" itemvalue="Python.gui_service" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test sub string" />
+        <item index="0" class="java.lang.String" itemvalue="Python.gui_dummy" />
+        <item index="1" class="java.lang.String" itemvalue="Python.socket_service" />
+        <item index="2" class="java.lang.String" itemvalue="Python.gui_service" />
+        <item index="3" class="java.lang.String" itemvalue="Python.sensor_dummy_gui" />
+        <item index="4" class="java.lang.String" itemvalue="Python.notification_service" />
       </list>
     </recent_temporary>
   </component>
@@ -336,17 +346,24 @@
       <option name="project" value="LOCAL" />
       <updated>1516184816058</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add respon text with text to speech ans.">
+      <created>1516249499211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1516249499211</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30590063" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25776398" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25931677" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -369,11 +386,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30590063" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25776398" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25931677" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -390,7 +407,8 @@
     <MESSAGE value="Add custom text tts with filename. Add cal enable cal disable and number ans method. fixed bug thread cal enable." />
     <MESSAGE value="add sensor dummy gui included gui service with sensor dummy" />
     <MESSAGE value="change receive command from GET to POST and add TTS &quot;pill found alarm&quot; and &quot;pill not found ans&quot; add pill order alarm add method to check pill is exist in the system or not" />
-    <option name="LAST_COMMIT_MESSAGE" value="change receive command from GET to POST and add TTS &quot;pill found alarm&quot; and &quot;pill not found ans&quot; add pill order alarm add method to check pill is exist in the system or not" />
+    <MESSAGE value="add respon text with text to speech ans." />
+    <option name="LAST_COMMIT_MESSAGE" value="add respon text with text to speech ans." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -409,21 +427,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/notification_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5151">
-          <caret line="310" column="0" lean-forward="true" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../katifinal-20171122T135148Z-001/katifinal/stepmotor.py" />
-    <entry file="file://$PROJECT_DIR$/connect_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mod test.py" />
     <entry file="file://$PROJECT_DIR$/notification_service.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -535,27 +538,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/senser_dummy_gui.py" />
     <entry file="file://$PROJECT_DIR$/test sub string.py" />
-    <entry file="file://$PROJECT_DIR$/notification_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="333" column="53" lean-forward="true" selection-start-line="333" selection-start-column="53" selection-end-line="333" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui_dummy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infrared_dummy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ultrasonic_dummy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -563,20 +545,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sensor_dummy_gui.py">
+    <entry file="file://$PROJECT_DIR$/../../final python/kati service v.1/notification_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gui_service.py">
+    <entry file="file://$PROJECT_DIR$/../../final python/kati service v.1/notification_service_v.2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11423">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrared_dummy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="148" column="46" lean-forward="false" selection-start-line="148" selection-start-column="46" selection-end-line="148" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensor_dummy_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="66" column="40" lean-forward="false" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -590,21 +587,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
+    <entry file="file://$PROJECT_DIR$/gui_dummy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        <state relative-caret-position="137">
+          <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test pulse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="83" lean-forward="false" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="83" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notification_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="482" column="5" lean-forward="true" selection-start-line="482" selection-start-column="5" selection-end-line="483" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2380">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/socket_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="68" lean-forward="true" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+        <state relative-caret-position="-934">
+          <caret line="66" column="34" lean-forward="false" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="91" column="16" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -271,9 +271,9 @@ class ServerThread(core.QThread):
                 self.count3 = 1
                 self.count4 = 1
                 if(self.behavior_status):
-                    notification_service.sent_all_behavior_took_pill(self.schedule_id)
+                    notification_service.sent_all_behavior_took_pill_in_background(self.schedule_id)
                 else:
-                    notification_service.sent_all_behavior_forgot_take_pill(self.schedule_id)
+                    notification_service.sent_all_behavior_forgot_take_pill_in_background(self.schedule_id)
                 self.behavior_status = False
                 self.ultrasonic_step= '1'    
                 self.set_kati_status("free")
@@ -286,7 +286,7 @@ class ServerThread(core.QThread):
                     print("ring_memo")
                     if(self.ultrasonic_step == '1'):
                         if(self.speak6_status == False):
-                            notification_service.sent_firebase_message_notification(self.memo_desc)
+                            notification_service.sent_firebase_message_notification_in_background(self.memo_desc)
                             self.emit(core.SIGNAL("dosomething(QString)"), str("3"+self.memo_desc))
                             text_to_speech_service.set_custom_msg(self.memo_desc)
                             text_to_speech_service.play_loop()
@@ -397,10 +397,10 @@ class ServerThread(core.QThread):
                 self.count2 = 1
                 self.count3 = 1
                 self.count4 = 1
-                """if(self.behavior_status):
-                    notification_service.sent_all_behavior_took_pill(self.schedule_id)
+                if(self.behavior_status):
+                    notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)
                 else:
-                    notification_service.sent_all_behavior_forgot_take_pill(self.schedule_id)"""
+                    notification_service.sent_all_behavior_forgot_take_one_pill_in_background(self.pill_id)
                 self.behavior_status = False
                 self.ultrasonic_step= '1'
                 self.set_kati_status("free")
