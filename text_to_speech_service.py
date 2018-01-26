@@ -72,42 +72,30 @@ def set_custom_msg_with_filename(text_to_talk,filename):
     tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
     mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
 
-def get_and_play_with_delay_command_not_found():
+def get_and_play_with_delay_command_not_found_ans():
+    text = language_service.get_and_play_with_delay_command_not_found_ans_text()
     mixer.music.load(get_directory('comand_not_found_ans.mp3'))
-    if (language_service.get_lang_short() == "th"):
-        text = "ขอโทษค่ะดิฉันไม่เข้าใจกรุณาลองอีกครั้ง"
-    elif (language_service.get_lang_short() == "en"):
-        text = "Sorry i can't understand please try again."
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text
 
 def get_and_play_with_delay_pill_not_found_ans():
+    text = language_service.get_and_play_with_delay_pill_not_found_ans_text()
     mixer.music.load(get_directory('pill_not_found_ans.mp3'))
-    if(language_service.get_lang_short()=="th"):
-        text="ไม่พบยาในระบบหรือในช่องจ่ายยา"
-    elif(language_service.get_lang_short()=="en"):
-        text="Not found pill in system or slot."
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text
 
 def get_and_play_with_delay_calculator_enable_ans():
+    text = language_service.get_and_play_with_delay_calculator_enable_ans_text()
     mixer.music.load(get_directory('calculator_enable_ans.mp3'))
-    if (language_service.get_lang_short() == "th"):
-        text = "กรุณาพูดคำถามคณิตศาสตร์ที่ต้องการให้ดิฉันคำนวณ"
-    elif (language_service.get_lang_short() == "en"):
-        text = "Please talk math quiz do you want to calculator."
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text
 
 def get_and_play_with_delay_calculator_disable_ans():
+    text = language_service.get_and_play_with_delay_calculator_disable_ans_text()
     mixer.music.load(get_directory('calculator_disable_ans.mp3'))
-    if (language_service.get_lang_short() == "th"):
-        text = "รูปแบบคำถามคณิตศาสตร์ผิดพลาดกรุณาลองอีกครั้ง"
-    elif (language_service.get_lang_short() == "en"):
-        text = "Error math quiz format please try again."
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text
@@ -148,6 +136,15 @@ def get_and_play_with_delay_weather_ans():
     tts = gTTS(text=text,lang=language_service.get_lang_short())
     tts.save(get_directory('temperature_ans.mp3'))
     mixer.music.load(get_directory('temperature_ans.mp3'))
+    play_with_delay()
+    mixer.music.load(get_directory('temp_file.mp3'))
+    return text
+
+def get_and_play_with_delay_memo_enable_ans():
+    text = language_service.get_and_play_with_delay_memo_enable_ans_text()
+    tts = gTTS(text=text,lang=language_service.get_lang_short())
+    tts.save(get_directory('memo_enable_ans.mp3'))
+    mixer.music.load(get_directory('memo_enable_ans.mp3'))
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text

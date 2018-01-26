@@ -93,6 +93,18 @@ def get_month_english_text(num_of_month):
 def get_year_thai_format(num_of_year):
     return str(int(num_of_year)+543)
 
+def get_error_ans_text():
+    if (get_lang() == "thai"):
+        return "เกิดข้อผิดพลาด"
+    elif (get_lang() == "english"):
+        return "Error."
+
+def get_kati_is_busy_ans_text():
+    if (get_lang() == "thai"):
+        return "ดิฉันยังไม่พร้อมรับคำสั่งกรุณาลองอีกครั้งค่ะ"
+    elif (get_lang() == "english"):
+        return "I'm busy."
+
 def get_time_ans_text():
     if(get_lang()=="thai"):
         return "ขณะนี้เวลา "+strftime("%H:%M:%S")
@@ -110,3 +122,39 @@ def get_temperature_ans_text(low_temperature,high_temperature):
         return "สภาพอากาศวันนี้มีอุณหภูมิต่ำสุดคือ "+low_temperature+"องศาเซลเซียส และมีอุณหภูมิสูงสุดคือ "+high_temperature+" องศาเซลเซียส"
     elif(get_lang()=="english"):
         return "Today weather have low temperature is "+low_temperature+" celsius and high temperature is "+high_temperature+" celsius."
+
+def get_and_play_with_delay_command_not_found_ans_text():
+    if (get_lang() == "thai"):
+        return "ขอโทษค่ะดิฉันไม่เข้าใจกรุณาลองอีกครั้ง"
+    elif (get_lang() == "english"):
+        return "Sorry i can't understand please try again."
+
+def get_and_play_with_delay_pill_not_found_ans_text():
+    if(get_lang()=="thai"):
+        return "ไม่พบยาในระบบหรือในช่องจ่ายยา"
+    elif(get_lang()=="english"):
+        return "Not found pill in system or slot."
+
+def get_and_play_with_delay_pill_found_ans_text():
+    if(get_lang()=="thai"):
+        return "พบยาในระบบกรุณามารับยาด้วยค่ะ"
+    elif(get_lang()=="english"):
+        return "Found pill in system please come to receive pill."
+
+def get_and_play_with_delay_calculator_enable_ans_text():
+    if (get_lang() == "thai"):
+        return "กรุณาพูดคำถามคณิตศาสตร์ที่ต้องการให้ดิฉันคำนวณ"
+    elif (get_lang() == "english"):
+        return "Please talk math quiz do you want to calculator."
+
+def get_and_play_with_delay_calculator_disable_ans_text():
+    if (get_lang() == "thai"):
+        return "รูปแบบคำถามคณิตศาสตร์ผิดพลาดกรุณาลองอีกครั้ง"
+    elif (get_lang() == "english"):
+        return "Error math quiz format please try again."
+
+def get_and_play_with_delay_memo_enable_ans_text():
+    if (get_lang() == "thai"):
+        return "กรุณาพูดข้อความที่ต้องการแจ้งเตือน"
+    elif (get_lang() == "english"):
+        return "Please talk text do you want to notification."
