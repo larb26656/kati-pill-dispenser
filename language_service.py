@@ -119,7 +119,7 @@ def get_date_ans_text():
 
 def get_temperature_ans_text(low_temperature,high_temperature):
     if(get_lang()=="thai"):
-        return "สภาพอากาศวันนี้มีอุณหภูมิต่ำสุดคือ "+low_temperature+"องศาเซลเซียส และมีอุณหภูมิสูงสุดคือ "+high_temperature+" องศาเซลเซียส"
+        return "สภาพอากาศวันนี้มีอุณหภูมิต่ำสุดคือ "+low_temperature+" องศาเซลเซียส และมีอุณหภูมิสูงสุดคือ "+high_temperature+" องศาเซลเซียส"
     elif(get_lang()=="english"):
         return "Today weather have low temperature is "+low_temperature+" celsius and high temperature is "+high_temperature+" celsius."
 

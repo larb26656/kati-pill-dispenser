@@ -58,9 +58,13 @@ def set_custom_msg(text_to_talk):
         language_directory="thai"
     else:
         language_directory="english"
-    tts = gTTS(text=text_to_talk,lang=language)
-    tts.save(get_directory_with_set_language('custom_msg_temp.mp3',language_directory))
-    mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3',language_directory))
+    try:
+        tts = gTTS(text=text_to_talk,lang=language)
+        tts.save(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
+        mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
+    except:
+        mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
+
 
 def set_custom_msg_with_filename(text_to_talk,filename):
     language=detect(text_to_talk)
@@ -68,9 +72,12 @@ def set_custom_msg_with_filename(text_to_talk,filename):
         language_directory="thai"
     else:
         language_directory="english"
-    tts = gTTS(text=text_to_talk,lang=language)
-    tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
-    mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
+    try:
+        tts = gTTS(text=text_to_talk,lang=language)
+        tts.save(get_directory_with_set_language(filename+'.mp3',language_directory))
+        mixer.music.load(get_directory_with_set_language(filename+'.mp3',language_directory))
+    except:
+        mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
 
 def get_and_play_with_delay_command_not_found_ans():
     text = language_service.get_and_play_with_delay_command_not_found_ans_text()
@@ -101,44 +108,66 @@ def get_and_play_with_delay_calculator_disable_ans():
     return text
 
 def get_and_play_with_delay_number_ans(number):
-    tts = gTTS(text=number,lang=language_service.get_lang_short())
-    tts.save(get_directory('number_ans.mp3'))
-    mixer.music.load(get_directory('number_ans.mp3'))
-    play_with_delay()
-    mixer.music.load(get_directory('temp_file.mp3'))
+    try:
+        tts = gTTS(text=number,lang=language_service.get_lang_short())
+        tts.save(get_directory('number_ans.mp3'))
+        mixer.music.load(get_directory('number_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
+    except:
+        mixer.music.load(get_directory('lost_connect_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
     return number
 
 def get_and_play_with_delay_time_ans():
     text = language_service.get_time_ans_text()
-    tts = gTTS(text=text,lang=language_service.get_lang_short())
-    tts.save(get_directory('time_ans.mp3'))
-    mixer.music.load(get_directory('time_ans.mp3'))
-    play_with_delay()
-    mixer.music.load(get_directory('temp_file.mp3'))
+    try:
+        tts = gTTS(text=text,lang=language_service.get_lang_short())
+        tts.save(get_directory('time_ans.mp3'))
+        mixer.music.load(get_directory('time_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
+    except:
+        mixer.music.load(get_directory('lost_connect_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
     return text
 
     
 def get_and_play_with_delay_date_ans():
     text = language_service.get_date_ans_text()
-    tts = gTTS(text=text,lang=language_service.get_lang_short())
-    tts.save(get_directory('date_ans.mp3'))
-    mixer.music.load(get_directory('date_ans.mp3'))
-    play_with_delay()
-    mixer.music.load(get_directory('temp_file.mp3'))
+    try:
+        tts = gTTS(text=text,lang=language_service.get_lang_short())
+        tts.save(get_directory('date_ans.mp3'))
+        mixer.music.load(get_directory('date_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
+    except:
+        mixer.music.load(get_directory('lost_connect_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
     return text
 
 def get_and_play_with_delay_weather_ans():
-    weather = Weather()
-    location = weather.lookup_by_location(language_service.get_provinces_name_english())
-    condition = location.condition()
-    forecasts = location.forecast()
-    text = language_service.get_temperature_ans_text(convert_fahrenheit_to_celsius(forecasts[0].low()),convert_fahrenheit_to_celsius(forecasts[0].high()))
-    tts = gTTS(text=text,lang=language_service.get_lang_short())
-    tts.save(get_directory('temperature_ans.mp3'))
-    mixer.music.load(get_directory('temperature_ans.mp3'))
-    play_with_delay()
-    mixer.music.load(get_directory('temp_file.mp3'))
-    return text
+    try:
+        weather = Weather()
+        location = weather.lookup_by_location(language_service.get_provinces_name_english())
+        condition = location.condition()
+        forecasts = location.forecast()
+        text = language_service.get_temperature_ans_text(convert_fahrenheit_to_celsius(forecasts[0].low()),convert_fahrenheit_to_celsius(forecasts[0].high()))
+        tts = gTTS(text=text,lang=language_service.get_lang_short())
+        tts.save(get_directory('temperature_ans.mp3'))
+        mixer.music.load(get_directory('temperature_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
+    except:
+        text = "error";
+        mixer.music.load(get_directory('lost_connect_ans.mp3'))
+        play_with_delay()
+        mixer.music.load(get_directory('temp_file.mp3'))
+    finally:
+        return text
 
 def get_and_play_with_delay_memo_enable_ans():
     text = language_service.get_and_play_with_delay_memo_enable_ans_text()

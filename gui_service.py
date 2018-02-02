@@ -18,7 +18,11 @@ import notification_service
 import sys
 import time
 
-
+class TestThread(core.QThread):
+    def run(self):
+        while True:
+            print("a")
+            time.sleep(1)
 class ServerThread(core.QThread):
     
     schedule_id = ""
@@ -434,6 +438,8 @@ class MainApp(gui.QWidget):
         #self.web_view.showMaximized()
         self.thread = ServerThread()
         self.thread.start()
+        self.thread2 = TestThread()
+        self.thread2.start()
         self.connect(self.thread, core.SIGNAL("dosomething(QString)"), self.doing)
         self.normal_face()
         self.web_view.show()
