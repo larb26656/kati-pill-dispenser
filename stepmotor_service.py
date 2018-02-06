@@ -97,7 +97,7 @@ def check_pil_exisit_and_num_of_pill(pill_id):
     cur.execute("SELECT * FROM `slot`WHERE Pill_id="+str(pill_id)+" AND Slot_visiblestatus = '1' LIMIT 1")
     if(cur.rowcount > 0):
       for r in cur:
-          return check_num_of_pill(pill_id)
+          return True
     else:
           return False
     cur.close()

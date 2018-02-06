@@ -1,3 +1,4 @@
+from PyQt4 import QtCore as core
 import pymysql
 import connect_service
 from pyfcm import FCMNotification
@@ -6,6 +7,7 @@ import json
 from time import localtime, strftime
 import time
 import threading
+import setting_service
 
 def get_date_time_short():
     return str(strftime("%Y%m%d%H%M%S", localtime()))
@@ -270,7 +272,7 @@ def get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict():
     numrows = int(cur.rowcount)
     if(numrows >= 1):
         for r in cur:
-            dict[count]=[str(r['Pill_log_firebase_notifcation_sent_error_log_id']),str(r['Pill_log_id'])]
+            dict[count]=[str(r['Pill_log_firebase_notification_sent_error_log_id']),str(r['Pill_log_id'])]
             count += 1
         return dict
     else:
@@ -452,10 +454,13 @@ def sent_firebase_pill_out_of_stock_notification(pill_log_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids,data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
     
 def sent_firebase_pill_almost_out_of_stock_notification(pill_log_id):
@@ -469,10 +474,13 @@ def sent_firebase_pill_almost_out_of_stock_notification(pill_log_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
     
 def sent_firebase_behavior_took_pill_notification(behavior_id):
@@ -486,10 +494,13 @@ def sent_firebase_behavior_took_pill_notification(behavior_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def sent_firebase_behavior_forgot_take_pill_notification(behavior_id):
@@ -503,10 +514,13 @@ def sent_firebase_behavior_forgot_take_pill_notification(behavior_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def sent_firebase_behavior_took_one_pill_notification(behavior_id):
@@ -520,10 +534,13 @@ def sent_firebase_behavior_took_one_pill_notification(behavior_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id):
@@ -537,13 +554,16 @@ def sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
-def sent_firebase_behavior_come_but_no_take_pill_notification():
+def sent_firebase_behavior_come_but_no_take_pill_notification(self):
     data_message = {
         "Title": "<Behavior>",
         "Body_thai": "ผู้ป่วยมาหน้าเครื่องแต่ไม่ได้รับยา",
@@ -554,10 +574,13 @@ def sent_firebase_behavior_come_but_no_take_pill_notification():
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
     
 def sent_firebase_message_notification(message):
@@ -570,10 +593,13 @@ def sent_firebase_message_notification(message):
         registration_ids = get_available_token_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
             return True
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
     
 def insert_pill_out_of_stock_message(pill_id):
@@ -673,7 +699,7 @@ def insert_behavior_firebase_database_sent_error_log(behavior_id,outsider_id):
 def insert_behavior_firebase_notification_sent_error_log(behavior_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO behavior_firebase_database_sent_error_log(Behavior_id) values('"+str(behavior_id)+"')")
+    cur.execute("INSERT INTO behavior_firebase_notification_sent_error_log(Behavior_id) values('"+str(behavior_id)+"')")
     conn.commit()
     cur.close()
     conn.close()
@@ -694,6 +720,16 @@ def insert_pill_log_firebase_database_sent_error_log(pill_log_id,outsider_id):
     cur.close()
     conn.close()
 
+def insert_memo_log(memo_id):
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("INSERT INTO memo_log(Memo_id,Memo_log_datetime) value('"+str(memo_id)+"',NOW())")
+    primary_key=cur.lastrowid
+    conn.commit()
+    cur.close()
+    conn.close()
+    return primary_key
+
 def insert_pill_out_of_stock_data(pill_log_id,token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database())
@@ -711,12 +747,16 @@ def insert_pill_out_of_stock_data(pill_log_id,token):
             }
             try:
                 db.child(str(token+"/pill")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def insert_pill_almost_out_of_stock_data(pill_log_id,token):
@@ -735,12 +775,16 @@ def insert_pill_almost_out_of_stock_data(pill_log_id,token):
             }
             try:
                 db.child(str(token+"/pill")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
     
 def insert_behavior_took_pill_data(behavior_id,token):
@@ -759,12 +803,16 @@ def insert_behavior_took_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def insert_behavior_forgot_take_pill_data(behavior_id,token):
@@ -783,12 +831,16 @@ def insert_behavior_forgot_take_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def insert_behavior_took_one_pill_data(behavior_id,token):
@@ -807,12 +859,16 @@ def insert_behavior_took_one_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
@@ -831,12 +887,16 @@ def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 def insert_behavior_come_but_no_take_pill_data(behavior_id,token):
@@ -855,12 +915,16 @@ def insert_behavior_come_but_no_take_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
+                setting_service.set_robot_connect_true_status()
                 return True
             except:
+                setting_service.set_robot_connect_false_status()
                 return False
         except:
+            setting_service.set_robot_connect_false_status()
             return False
     except:
+        setting_service.set_robot_connect_false_status()
         return False
 
 
@@ -903,6 +967,7 @@ def sent_all_behavior_took_pill(schedule_id):
         if (sent_firebase_behavior_took_pill_notification(behavior_id)):
             print("pass")
             for i in range(len(get_available_token_dict())):
+                print(get_available_token_dict().get(i)[0])
                 if(insert_behavior_took_pill_data(behavior_id, get_available_token_dict().get(i)[1])):
                     pass
                 else:
@@ -1039,7 +1104,7 @@ def sent_all_behavior_forgot_take_one_pill_in_background(pill_id):
     sent_behavior_forgot_take_one_pill_thread.start()
 
 def sent_all_behavior_come_but_no_take_pill_in_background():
-    sent_behavior_come_but_no_take_pill_thread = threading.Thread(target=sent_all_behavior_come_but_no_take_pill )
+    sent_behavior_come_but_no_take_pill_thread = threading.Thread(target=sent_all_behavior_come_but_no_take_pill)
     sent_behavior_come_but_no_take_pill_thread.start()
     
 def sent_firebase_message_notification_in_background(message):
@@ -1050,21 +1115,24 @@ def sent_all_data_error_data_again_in_background():
     sent_data_error_data_again_thread = threading.Thread(target=sent_all_data_error_data_again)
     sent_data_error_data_again_thread.start()
 
-
-
+class Sent_all_data_error_Thread(core.QThread):
+    def run(self):
+        while True:
+            sent_all_data_error_data_again_in_background()
+            time.sleep(15)
 
 
 #print(insert_pill_out_of_stock_message(1))
-#sent_all_pill_out_of_stock(1)
 #sent_all_behavior_forgot_take_pill_in_background(13)
 #sent_firebase_message_notification_in_background("ทดสอบแจ้งเเือนข้อความ")
 #insert_pill_log_firebase_notification_sent_error_log(78)
 #sent_all_pill_out_of_stock(1)
 #print(get_pill_out_of_stock_firebase_notification_sent_error_log_dict());
 #sent_all_data_error_data_again()
-#sent_all_pill_out_of_stock_in_background(1)
 """print(get_pill_out_of_stock_firebase_notification_sent_error_log_dict())
 if get_pill_out_of_stock_firebase_notification_sent_error_log_dict() is not None:
     print("a")
 else:
     print("b")"""
+#sent_all_behavior_forgot_take_one_pill_in_background(2)
+#sent_all_pill_almost_out_of_stock(3)

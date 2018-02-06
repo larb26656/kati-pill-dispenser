@@ -28,3 +28,25 @@ def start_count_detect():
             else:
                 countdown = 3
         time.sleep(1)
+
+"""def test_a():
+    print("success")
+
+def aaaa(method):
+    count1 = 0
+    count2 = 0
+    while True:
+        if(get_distance_less()):
+            count1 = count1 + 1
+            print("count1:"+str(count1))
+            if(count1 == 20):
+                method()
+        else:
+            count2 = count2 + 1
+            print("count2:"+str(count2))
+            if(count2 == 20):
+                return False
+        time.sleep(1)
+
+aaaa(test_a)"""
+

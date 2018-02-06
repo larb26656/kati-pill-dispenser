@@ -7,6 +7,7 @@ import pymysql
 import text_to_speech_service
 import time
 import stepmotor_service
+import setting_service
 from concurrent.futures import ThreadPoolExecutor
 import language_service
 import json
@@ -73,7 +74,7 @@ def get_conversation(text):
                 elif(r['Conversation_type'] == "pill_dispenser"):
                     if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
                         text = language_service.get_and_play_with_delay_pill_found_ans_text()
-                        set_kati_status("pill_dispenser" + str(r['Pill_id']))
+                        setting_service.set_pill_dispenser_true_status(str(r['Pill_id']))
                     else:
                         set_kati_face_status("talk")
                         text = text_to_speech_service.get_and_play_with_delay_pill_not_found_ans()
