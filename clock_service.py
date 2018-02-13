@@ -77,9 +77,14 @@ class Start_clock_Thread(core.QThread):
                     self.schedule_time = ""
                     self.schedule_time_diff = ""
                 else:
-                    self.schedule_id = str(r['Schedule_id'])
-                    self.schedule_time = str(r['Schedule_time'])
-                    self.schedule_time_diff = str(r['Timediff'])
+                    if(self.get_pill_is_left(r['Schedule_id'])):
+                        self.schedule_id = str(r['Schedule_id'])
+                        self.schedule_time = str(r['Schedule_time'])
+                        self.schedule_time_diff = str(r['Timediff'])
+                    else:
+                        self.schedule_id = ""
+                        self.schedule_time = ""
+                        self.schedule_time_diff = ""
         else:
             self.schedule_id = ""
             self.schedule_time = ""
@@ -137,6 +142,16 @@ class Start_clock_Thread(core.QThread):
             return False
         cur.close()
         conn.close()
+
+    def get_pill_is_left(self, Schedule_id):
+        conn = connect_service.get_connect_sql()
+        cur = conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute("SELECT * FROM `dispenser` INNER JOIN slot ON dispenser.Slot_id = slot.Slot_id INNER JOIN pill ON slot.Pill_id = pill.Pill_id WHERE Schedule_id = '"+str(
+            Schedule_id)+"' AND Pill_left > 0")
+        if (cur.rowcount > 0):
+            return True
+        else:
+            return False
 
     def get_time_list(self):
         global kati_status,test
