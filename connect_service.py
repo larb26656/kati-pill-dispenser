@@ -1,9 +1,11 @@
 import pymysql
+from PyQt4.QtGui import QMessageBox
 from pyfcm import FCMNotification
 from firebase import firebase
 
 def get_connect_sql():
-    return pymysql.connect(host='127.0.0.1', user='root', passwd=None, db='kati',charset='utf8')
+        return pymysql.connect(host='127.0.0.1', user='root', passwd=None, db='kati',charset='utf8')
+
 def get_connect_firebase_real_time_database():
     return {
   "apiKey": "AIzaSyBEihoJYWWFkEaiOrqJcN6rcYKHYW1mMXU",

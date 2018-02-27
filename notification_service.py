@@ -1,9 +1,7 @@
 from PyQt4 import QtCore as core
 import pymysql
 import connect_service
-from pyfcm import FCMNotification
 import pyrebase
-import json
 from time import localtime, strftime
 import time
 import threading
@@ -933,12 +931,10 @@ def sent_all_pill_out_of_stock(pill_id):
     insert_pill_log_notification()
     if(check_outsider()):
         if(sent_firebase_pill_out_of_stock_notification(pill_log_id)):
-            print("pass")
             for i in range(len(get_available_token_dict())):
                 print("loop")
                 if(insert_pill_out_of_stock_data(pill_log_id,get_available_token_dict().get(i)[1])):
                     pass
-                    print("pass1")
                 else:
                     insert_pill_log_firebase_database_sent_error_log(pill_log_id,get_available_token_dict().get(i)[0])
                     print("notpass")
@@ -1121,19 +1117,4 @@ class Sent_all_data_error_Thread(core.QThread):
             sent_all_data_error_data_again_in_background()
             time.sleep(15)
 
-
-#print(insert_pill_out_of_stock_message(1))
-#sent_all_behavior_forgot_take_pill_in_background(13)
-#sent_firebase_message_notification_in_background("ทดสอบแจ้งเเือนข้อความ")
-#insert_pill_log_firebase_notification_sent_error_log(78)
-#sent_all_pill_out_of_stock(1)
-#print(get_pill_out_of_stock_firebase_notification_sent_error_log_dict());
-#sent_all_data_error_data_again()
-"""print(get_pill_out_of_stock_firebase_notification_sent_error_log_dict())
-if get_pill_out_of_stock_firebase_notification_sent_error_log_dict() is not None:
-    print("a")
-else:
-    print("b")"""
-#sent_all_behavior_forgot_take_one_pill_in_background(2)
-#sent_all_pill_almost_out_of_stock(3)
 

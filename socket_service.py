@@ -17,6 +17,7 @@ memo_enable_status = False
 executor = ThreadPoolExecutor(1)
 app=Flask(__name__)
 
+
 @app.route('/sent', methods=['POST'])
 def search_data():
         query = str(request.form['text'])

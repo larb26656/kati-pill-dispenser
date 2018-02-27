@@ -12,6 +12,7 @@ import notification_service
 import setting_service
 from PyQt4 import QtCore as core
 import time
+from logging_service import Main_log
 
 
 class Start_clock_Thread(core.QThread):
@@ -439,6 +440,7 @@ class Start_clock_Thread(core.QThread):
                         time.sleep(1)
                     self.face_status = False
             elif (self.get_kati_status() == "schedule"):
+                Main_log.logger.info("Kati do schedule notification.")
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
                 if(self.get_pill_dispenser_with_schedule_sensor_detect(schedule_time)):
@@ -454,6 +456,7 @@ class Start_clock_Thread(core.QThread):
 
                 print("stop")
             elif (self.get_kati_status() == "memo"):
+                Main_log.logger.info("Kati do memo notification.")
                 memo_id = self.memo_id
                 memo_desc = self.memo_desc
                 memo_notification_time = self.memo_notification_time
@@ -467,6 +470,7 @@ class Start_clock_Thread(core.QThread):
                 self.set_kati_status("free")
 
             elif (self.get_kati_status() == "pill_dispenser"):
+                Main_log.logger.info("Kai do pill dispenser")
                 self.pill_id = setting_service.get_pill_id()
                 self.get_pill_dispenser_with_command_sensor_detect(self.pill_id)
                 notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)
