@@ -60,13 +60,17 @@ def set_msg_pill_found_alarm():
     mixer.music.load(get_directory('pill_found_alarm.mp3'))
     
 def set_custom_msg(text_to_talk):
-    language=detect(text_to_talk)
-    if(language=="th"):
-        language_directory="thai"
-    else:
-        language_directory="english"
     try:
-        tts = gTTS(text=text_to_talk,lang=language)
+        int(text_to_talk)
+        language = language_service.get_lang_short()
+    except:
+        language = detect(text_to_talk)
+    if (language == "th"):
+        language_directory = "thai"
+    else:
+        language_directory = "english"
+    try:
+        tts = gTTS(text=text_to_talk, lang=language)
         tts.save(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
         mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
         setting_service.set_robot_connect_true_status()
@@ -75,6 +79,31 @@ def set_custom_msg(text_to_talk):
         mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
         setting_service.set_robot_connect_false_status()
         return False
+
+
+    """try:
+        text_to_talk = int(text_to_talk)
+        language = language_service.get_lang_short()
+    except:
+        language = detect(text_to_talk)
+        print(language)
+    if(language=="th"):
+        language_directory = "thai"
+        language = "th"
+    else:
+        language_directory = "english"
+        language = "en"
+    #try:
+    tts = gTTS(text=text_to_talk,lang=language_service.get_lang_short())
+    tts.save(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
+    mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
+    setting_service.set_robot_connect_true_status()
+    return True
+    except:
+        print("aaa")
+        mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
+        setting_service.set_robot_connect_false_status()
+        return False"""
 
 def set_custom_msg_with_filename(text_to_talk,filename):
     language=detect(text_to_talk)
@@ -193,3 +222,4 @@ def get_and_play_with_delay_memo_enable_ans():
     play_with_delay()
     mixer.music.load(get_directory('temp_file.mp3'))
     return text
+

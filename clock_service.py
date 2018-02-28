@@ -62,7 +62,9 @@ class Start_clock_Thread(core.QThread):
         self.d2_ts = time.mktime(self.d2.timetuple())
 
         self.timediff = int(self.d2_ts - self.d1_ts) / 60
-        return math.floor(self.timediff)
+        #old method
+        #return math.floor(self.timediff)
+        return self.timediff
 
     def get_schedule_time_list(self):
         global schedule_id, schedule_time, schedule_time_diff
@@ -184,6 +186,7 @@ class Start_clock_Thread(core.QThread):
             text_to_speech_service.play_with_delay()
         while True:
             if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_alarm_text):
+                print(self.get_time_diff(time_notification))
                 if(not self.talk_connect_status):
                     if (text_to_speech_service.set_custom_msg(memo_desc)):
                         text_to_speech_service.play_loop()
@@ -465,6 +468,7 @@ class Start_clock_Thread(core.QThread):
                 self.emit(core.SIGNAL("dosomething(QString)"), str("3" + memo_desc))
                 self.start_infrared_count_detect_memo(memo_notification_time,memo_desc)
                 text_to_speech_service.stop()
+                print("finish")
                 self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
                 notification_service.insert_memo_log(memo_id)
                 self.set_kati_status("free")

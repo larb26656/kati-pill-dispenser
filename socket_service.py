@@ -1,8 +1,6 @@
 import socket
 import connect_service
-from pprint import pprint
 from flask import Flask, jsonify, request, abort
-from time import strftime
 import pymysql
 import text_to_speech_service
 import time
@@ -11,6 +9,7 @@ import setting_service
 from concurrent.futures import ThreadPoolExecutor
 import language_service
 import json
+from logging_service import Socket_log
 
 calculator_enable_status = False
 memo_enable_status = False
@@ -55,22 +54,26 @@ def get_conversation(text):
                     set_kati_face_status("talk")
                     text=text_to_speech_service.get_and_play_with_delay_time_ans()
                     set_kati_face_status("normal")
+                    Socket_log.logger.info("Receive HTTP time request.")
                     return return_json_format(text,"time")
                 elif(r['Conversation_type'] == "date"):
                     set_kati_face_status("talk")
                     text=text_to_speech_service.get_and_play_with_delay_date_ans()
                     set_kati_face_status("normal")
+                    Socket_log.logger.info("Receive HTTP date request.")
                     return return_json_format(text,"date")
                 elif(r['Conversation_type'] == "weather"):
                     set_kati_face_status("talk")
                     text = text_to_speech_service.get_and_play_with_delay_weather_ans()
                     set_kati_face_status("normal")
+                    Socket_log.logger.info("Receive HTTP weather request.")
                     return return_json_format(text,"weather")
                 elif(r['Conversation_type'] == "calculator"):
                     set_kati_face_status("talk")
                     text = text_to_speech_service.get_and_play_with_delay_calculator_enable_ans()
                     set_kati_face_status("normal")
                     executor.submit(calculator_enable)
+                    Socket_log.logger.info("Receive HTTP calculator request.")
                     return return_json_format(text,"calculator")
                 elif(r['Conversation_type'] == "pill_dispenser"):
                     if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
@@ -80,17 +83,20 @@ def get_conversation(text):
                         set_kati_face_status("talk")
                         text = text_to_speech_service.get_and_play_with_delay_pill_not_found_ans()
                         set_kati_face_status("normal")
+                    Socket_log.logger.info("Receive HTTP pill dispenser request.")
                     return return_json_format(text,"pill_dispenser")
                 elif(r['Conversation_type'] == "memo"):
                     set_kati_face_status("talk")
                     text = text_to_speech_service.get_and_play_with_delay_memo_enable_ans()
                     set_kati_face_status("normal")
                     executor.submit(memo_enable)
+                    Socket_log.logger.info("Receive HTTP memo request.")
                     return return_json_format(text,"memo")
         else:
             set_kati_face_status("talk")
             text = text_to_speech_service.get_and_play_with_delay_command_not_found_ans()
             set_kati_face_status("normal")
+            Socket_log.logger.warning("Receive HTTP unknown request.")
             return return_json_format(text,"command_not_found")
         cur.close()
         conn.close()
@@ -172,4 +178,5 @@ def memo(text):
 def return_json_format(text,type):
     return json.dumps({'text': text, 'type': type}, ensure_ascii=False)
 
-app.run(debug=True, host='0.0.0.0')
+def run_socket_sever():
+    app.run(debug=True, host='0.0.0.0')

@@ -3,7 +3,7 @@ import threading
 from PyQt4 import QtGui as gui
 from PyQt4 import QtGui
 from PyQt4 import QtCore as core
-from PyQt4.QtCore import QUrl, QCoreApplication
+from PyQt4.QtCore import QThread, QUrl, QCoreApplication
 from PyQt4.QtWebKit import QWebView
 import threading
 import notification_service
@@ -11,7 +11,6 @@ import clock_service
 import setting_service
 import sys
 import socket
-import test
 import os.path
 import traceback
 from logging_service import Main_log
@@ -117,11 +116,39 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     print ("".join(traceback.format_exception(exc_type, exc_value, exc_traceback)))"""
     QCoreApplication.quit()
 
+class FlaskThread(QThread):
+    def __init__(self, application):
+        QThread.__init__(self)
+        self.application = application
+
+    def __del__(self):
+        self.wait()
+
+    def run(self):
+        self.application.run(host='0.0.0.0')
+
+qtapp = gui.QApplication(sys.argv)
+from socket_service import app
+webapp = FlaskThread(app)
+webapp.start()
+
+qtapp.aboutToQuit.connect(webapp.terminate)
+form = MainApp()
 install_thread_excepthook()
+sys.excepthook = handle_exception
+form.run()
+Main_log.logger.info("Open main GUI.")
+qtapp.exec_()
+
+"""if __name__ == '__main__':
+    from socket_service import app
+    sys.exit(provide_GUI_for(app))"""
+
+"""install_thread_excepthook()
 sys.excepthook = handle_exception
 
 app = gui.QApplication(sys.argv)
 form = MainApp()
 form.run()
 Main_log.logger.info("Open main GUI.")
-app.exec_()
+app.exec_()"""
