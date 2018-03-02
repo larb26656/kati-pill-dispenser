@@ -469,7 +469,7 @@ class Start_clock_Thread(core.QThread):
                 self.start_infrared_count_detect_memo(memo_notification_time,memo_desc)
                 text_to_speech_service.stop()
                 print("finish")
-                self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
+                self.emit(core.SIGNAL("dosomething(QString)"), str("4" + memo_desc))
                 notification_service.insert_memo_log(memo_id)
                 self.set_kati_status("free")
 

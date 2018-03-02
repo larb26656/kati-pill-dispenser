@@ -48,6 +48,10 @@ class MainApp(gui.QWidget):
         r = QUrl("http://127.0.0.1/kati2/robot_gui/text_display.php?text="+text)
         self.web_view.load(r)
 
+    def text_display_after_time_out(self, text):
+        r = QUrl("http://127.0.0.1/kati2/robot_gui/text_display_after_time_out.php?text=" + text)
+        self.web_view.load(r)
+
     def is_connected(self):
         REMOTE_SERVER = "www.google.com"
         try:
@@ -69,6 +73,8 @@ class MainApp(gui.QWidget):
             self.talk_face()
         elif(i[:1]=="3"):
             self.text_display(i[1:])
+        elif(i[:1]=="4"):
+            self.text_display_after_time_out(i[1:])
 
 def install_thread_excepthook():
     """
