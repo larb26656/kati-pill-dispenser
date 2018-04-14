@@ -37,19 +37,19 @@ class MainApp(gui.QWidget):
         self.web_view.show()
 
     def normal_face(self):
-        r = QUrl("http://127.0.0.1/kati2/robot_gui/normal_face.php")
+        r = QUrl("http://127.0.0.1/kati/robot_gui/normal_face.php")
         self.web_view.load(r)
 
     def talk_face(self):
-        r = QUrl("http://127.0.0.1/kati2/robot_gui/talk_face.php")
+        r = QUrl("http://127.0.0.1/kati/robot_gui/talk_face.php")
         self.web_view.load(r)
 
     def text_display(self,text):
-        r = QUrl("http://127.0.0.1/kati2/robot_gui/text_display.php?text="+text)
+        r = QUrl("http://127.0.0.1/kati/robot_gui/text_display.php?text="+text)
         self.web_view.load(r)
 
     def text_display_after_time_out(self, text):
-        r = QUrl("http://127.0.0.1/kati2/robot_gui/text_display_after_time_out.php?text=" + text)
+        r = QUrl("http://127.0.0.1/kati/robot_gui/text_display_after_time_out.php?text=" + text)
         self.web_view.load(r)
 
     def is_connected(self):

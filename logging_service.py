@@ -9,7 +9,7 @@ def get_file_name_as_date(log_type):
 
 class Main_log():
     log_format = log_format = (
-            "%(asctime)s [%(levelname)s]: %(message)s")
+            "%(asctime)s*,*[%(levelname)s]:*,*%(message)s")
     log_level = logging.INFO
     log_file = get_file_name_as_date("main")
     logger = logging.getLogger("main_log")
@@ -22,7 +22,7 @@ class Main_log():
 
 class Socket_log():
     log_format = log_format = (
-            "%(asctime)s [%(levelname)s]: %(message)s")
+            "%(asctime)s*,*[%(levelname)s]:*,*%(message)s")
     log_level = logging.INFO
     log_file = get_file_name_as_date("socket")
     logger = logging.getLogger("socket_log")

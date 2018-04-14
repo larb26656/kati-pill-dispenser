@@ -152,10 +152,17 @@ def calculator(quest):
     question = question.replace("ลบ","-")
     question = question.replace("คูณ","*")
     question = question.replace("หาร","/")
+    question = question.replace(" ", "")
     question = question.replace("plus","+")
     question = question.replace("minus","-")
     question = question.replace("multiply","*")
     question = question.replace("divide","/")
+    question = question.replace("สิบ", "10")
+    question = question.replace("ร้อย", "100")
+    question = question.replace("พัน", "1000")
+    question = question.replace("หมื่น", "10000")
+    question = question.replace("แสน", "100000")
+    question = question.replace("ล้าน", "1000000")
     try:
         calculator_enable_status = False
         set_kati_face_status("talk")
