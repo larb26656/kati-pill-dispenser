@@ -79,7 +79,6 @@ def check_num_of_pill(pill_id):
               return False
             finally:
               notification_service.sent_all_pill_out_of_stock_in_background(pill_id)
-            
         else:
             if r['Pill_left'] < 5:
               try:

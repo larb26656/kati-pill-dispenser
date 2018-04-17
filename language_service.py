@@ -93,6 +93,12 @@ def get_month_english_text(num_of_month):
 def get_year_thai_format(num_of_year):
     return str(int(num_of_year)+543)
 
+def get_it_time_to_take_medicine():
+    if (get_lang() == "thai"):
+        return "ถึงเวลาที่คุณต้องรับประทานยาแล้วกรุณามารับประทานยาด้วยค่ะ"
+    elif (get_lang() == "english"):
+        return "It's time to take medicine please come to take medicine."
+
 def get_error_ans_text():
     if (get_lang() == "thai"):
         return "เกิดข้อผิดพลาด"

@@ -2,7 +2,6 @@ from datetime import datetime
 from time import strftime
 import pymysql
 from threading import Thread
-import math
 import connect_service
 import text_to_speech_service
 import ultrasonic_dummy
@@ -10,6 +9,7 @@ import infrared_dummy
 import stepmotor_service
 import notification_service
 import setting_service
+import language_service
 from PyQt4 import QtCore as core
 import time
 from logging_service import Main_log
@@ -23,8 +23,8 @@ class Start_clock_Thread(core.QThread):
     memo_desc = ""
     memo_notification_time = ""
     memo_time_diff = ""
-    minutes_alarm = 1
-    minutes_alarm_text = 1
+    minutes_pill_dispenser_alarm = 29
+    minutes_memo_alarm = 4
     ultrasonic_step = '1'
     behavior_status = False
 
@@ -72,7 +72,7 @@ class Start_clock_Thread(core.QThread):
         cur = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute(
             "SELECT Schedule_id,Schedule_time,FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Schedule_time))/ 60) AS Timediff FROM schedule WHERE FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Schedule_time))/ 60) >= 0 AND FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Schedule_time))/ 60) <= " + str(
-                self.minutes_alarm) + " AND Schedule_visiblestatus = '1' ORDER BY FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Schedule_time))/ 60) DESC LIMIT 1")
+                self.minutes_pill_dispenser_alarm) + " AND Schedule_visiblestatus = '1' ORDER BY FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Schedule_time))/ 60) DESC LIMIT 1")
         if (cur.rowcount > 0):
             for r in cur:
                 if (self.get_behavior(r['Schedule_id'])):
@@ -101,7 +101,7 @@ class Start_clock_Thread(core.QThread):
         cur = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute(
             "SELECT *,FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Memo_notification_time))/ 60) AS Timediff FROM `memo` WHERE FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Memo_notification_time))/ 60) >= 0 AND FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Memo_notification_time))/ 60) <= " + str(
-                self.minutes_alarm_text) + " AND (SUBSTRING(Memo_notification_day,DAYOFWEEK(CURDATE()), 1) OR Memo_notification_date = CURDATE()) AND Memo_visiblestatus = '1' ORDER BY FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Memo_notification_time))/ 60) DESC LIMIT 1")
+                self.minutes_memo_alarm) + " AND (SUBSTRING(Memo_notification_day,DAYOFWEEK(CURDATE()), 1) OR Memo_notification_date = CURDATE()) AND Memo_visiblestatus = '1' ORDER BY FLOOR(TIME_TO_SEC(TIMEDIFF(CURTIME(),Memo_notification_time))/ 60) DESC LIMIT 1")
         if (cur.rowcount > 0):
             for r in cur:
                 if (self.get_memo_log(r['Memo_id'])):
@@ -175,7 +175,7 @@ class Start_clock_Thread(core.QThread):
             time.sleep(1)
 
     def start_infrared_count_detect_memo(self,time_notification,memo_desc):
-        global minutes_alarm_text
+        global minutes_memo_alarm
         self.count = 0
         self.countdown = 3
         self.talk_connect_status = False
@@ -185,8 +185,7 @@ class Start_clock_Thread(core.QThread):
         else:
             text_to_speech_service.play_with_delay()
         while True:
-            if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_alarm_text):
-                print(self.get_time_diff(time_notification))
+            if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_memo_alarm):
                 if(not self.talk_connect_status):
                     if (text_to_speech_service.set_custom_msg(memo_desc)):
                         text_to_speech_service.play_loop()
@@ -246,7 +245,7 @@ class Start_clock_Thread(core.QThread):
         self.count = 0
         self.countdown = 3
         while (self.count_status == False):
-            if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_alarm):
+            if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_pill_dispenser_alarm):
                 if (infrared_dummy.get_distance_less()):
                     text_to_speech_service.set_reduce_volume()
                     print(self.count)
@@ -398,7 +397,7 @@ class Start_clock_Thread(core.QThread):
         self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
         text_to_speech_service.set_msg_pill_found_alarm()
         text_to_speech_service.play_loop()
-        self.start_infrared_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+        self.start_infrared_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
         self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something_and_talk(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
         self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
         text_to_speech_service.set_msg_pill_dispensing_alarm()
@@ -446,6 +445,7 @@ class Start_clock_Thread(core.QThread):
                 Main_log.logger.info("Kati do schedule notification.")
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
+                notification_service.sent_firebase_message_notification_in_background(language_service.get_it_time_to_take_medicine())
                 if(self.get_pill_dispenser_with_schedule_sensor_detect(schedule_time)):
                     notification_service.sent_all_behavior_took_pill_in_background(schedule_id)
                     self.set_kati_status("free")
@@ -474,7 +474,7 @@ class Start_clock_Thread(core.QThread):
                 self.set_kati_status("free")
 
             elif (self.get_kati_status() == "pill_dispenser"):
-                Main_log.logger.info("Kai do pill dispenser")
+                Main_log.logger.info("Kati do pill dispenser")
                 self.pill_id = setting_service.get_pill_id()
                 self.get_pill_dispenser_with_command_sensor_detect(self.pill_id)
                 notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)

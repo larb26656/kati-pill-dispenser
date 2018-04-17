@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaa512f4-fe1e-4367-b8df-84285bb15cef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/english/temperature_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/english/temperature_ans.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/english/time_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/english/time_ans.mp3" />
+    <list default="true" id="aaa512f4-fe1e-4367-b8df-84285bb15cef" name="Default" comment="add message send log error and add sent notification when start schedule">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/thai/custom_msg_temp.mp3" afterPath="$PROJECT_DIR$/voice_sound/thai/custom_msg_temp.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/thai/number_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/thai/number_ans.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/voice_sound/thai/temperature_ans.mp3" afterPath="$PROJECT_DIR$/voice_sound/thai/temperature_ans.mp3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui_service.py" afterPath="$PROJECT_DIR$/gui_service.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logging_service.py" afterPath="$PROJECT_DIR$/logging_service.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/socket_service.py" afterPath="$PROJECT_DIR$/socket_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clock_service.py" afterPath="$PROJECT_DIR$/clock_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connect_service.py" afterPath="$PROJECT_DIR$/connect_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/kati_status.txt" afterPath="$PROJECT_DIR$/data/kati_status.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/language_service.py" afterPath="$PROJECT_DIR$/language_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notification_service.py" afterPath="$PROJECT_DIR$/notification_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stepmotor_service.py" afterPath="$PROJECT_DIR$/stepmotor_service.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,34 +20,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gui_service.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gui_service.py">
+      <file leaf-file-name="clock_service.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clock_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-807">
-              <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+            <state relative-caret-position="238">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notification_service.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/notification_service.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="1184" column="19" lean-forward="true" selection-start-line="1184" selection-start-column="19" selection-end-line="1184" selection-end-column="19" />
               <folding>
-                <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sensor_dummy_gui.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sensor_dummy_gui.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="socket_service.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/socket_service.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="177" column="55" lean-forward="false" selection-start-line="177" selection-start-column="55" selection-end-line="177" selection-end-column="55" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -56,40 +45,18 @@
       <file leaf-file-name="language_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/language_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state relative-caret-position="221">
+              <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clock_service.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clock_service.py">
+      <file leaf-file-name="infrared_dummy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infrared_dummy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7599">
-              <caret line="461" column="66" lean-forward="true" selection-start-line="461" selection-start-column="66" selection-end-line="461" selection-end-column="66" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gui_dummy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gui_dummy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serial_service.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serial_service.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="272">
+              <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -98,8 +65,28 @@
       <file leaf-file-name="logging_service.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logging_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-25">
+            <state relative-caret-position="85">
               <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gui_dummy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gui_dummy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connect_service.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/connect_service.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="17" column="80" lean-forward="false" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -107,13 +94,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notification_service.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/notification_service.py">
+      <file leaf-file-name="gui_service.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gui_service.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="-1029">
+              <caret line="65" column="31" lean-forward="true" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#16#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,11 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict</find>
-      <find>sent_all_behavior_took_pill_in_background</find>
-      <find>sent_all_behavior_took_pill</find>
-      <find>insert_behavior_forgot_take_one_pill_data</find>
-      <find>sent_firebase_behavior_forgot_take_one_pill_notification</find>
       <find>insert_behavior_firebase_database_sent_error_log</find>
       <find>insert_pill_log_firebase_database_sent_error_log</find>
       <find>sent_all_pill_almost_out_of_stock</find>
@@ -160,6 +142,11 @@
       <find>main</find>
       <find>get_time_diff</find>
       <find>get_directory_with_set_language</find>
+      <find>start_infrared_count_detect_pill_dispenser_with_countdown_do_something</find>
+      <find>check_num_of_pill</find>
+      <find>get_available_token_list</find>
+      <find>get_connect_firebase_real_time_database_kati_read</find>
+      <find>sent_firebase_message_notification</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,22 +167,26 @@
         <option value="$PROJECT_DIR$/sensor_dummy_gui.py" />
         <option value="$PROJECT_DIR$/test sub string.py" />
         <option value="$PROJECT_DIR$/test pulse.py" />
-        <option value="$PROJECT_DIR$/language_service.py" />
         <option value="$PROJECT_DIR$/setting_servic.py" />
-        <option value="$PROJECT_DIR$/stepmotor_service.py" />
         <option value="$PROJECT_DIR$/setting_service.py" />
         <option value="$PROJECT_DIR$/infrared_dummy.py" />
         <option value="$PROJECT_DIR$/serial_service.py" />
-        <option value="$PROJECT_DIR$/connect_service.py" />
-        <option value="$PROJECT_DIR$/notification_service.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/run_service.py" />
         <option value="$PROJECT_DIR$/text_to_speech_service.py" />
         <option value="$PROJECT_DIR$/gui_dummy.py" />
-        <option value="$PROJECT_DIR$/clock_service.py" />
         <option value="$PROJECT_DIR$/gui_service.py" />
         <option value="$PROJECT_DIR$/logging_service.py" />
         <option value="$PROJECT_DIR$/socket_service.py" />
+        <option value="$PROJECT_DIR$/variable_service.py" />
+        <option value="$PROJECT_DIR$/b.py" />
+        <option value="$PROJECT_DIR$/a.py" />
+        <option value="$PROJECT_DIR$/stepmotor_service.py" />
+        <option value="$PROJECT_DIR$/testthread.py" />
+        <option value="$PROJECT_DIR$/notification_service.py" />
+        <option value="$PROJECT_DIR$/language_service.py" />
+        <option value="$PROJECT_DIR$/clock_service.py" />
+        <option value="$PROJECT_DIR$/connect_service.py" />
       </list>
     </option>
   </component>
@@ -222,6 +213,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,16 +221,10 @@
               <item name="kati_python" type="b2602c69:ProjectViewProjectNode" />
               <item name="kati_python" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="kati_python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kati_python" type="462c0819:PsiDirectoryNode" />
-              <item name="log" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -263,8 +249,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gui_service">
-    <configuration name="clock_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.notification_service">
+    <configuration name="b" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -276,12 +262,12 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clock_service.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/b.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="gui_dummy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="connect_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -293,7 +279,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gui_dummy.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/connect_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -315,7 +301,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="logging_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="notification_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -327,12 +313,12 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/logging_service.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/notification_service.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="text_to_speech_service" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="testthread" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -344,25 +330,25 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="firebasecloud" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/text_to_speech_service.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testthread.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.gui_service" />
-      <item index="1" class="java.lang.String" itemvalue="Python.clock_service" />
-      <item index="2" class="java.lang.String" itemvalue="Python.text_to_speech_service" />
-      <item index="3" class="java.lang.String" itemvalue="Python.gui_dummy" />
-      <item index="4" class="java.lang.String" itemvalue="Python.logging_service" />
+      <item index="0" class="java.lang.String" itemvalue="Python.b" />
+      <item index="1" class="java.lang.String" itemvalue="Python.notification_service" />
+      <item index="2" class="java.lang.String" itemvalue="Python.connect_service" />
+      <item index="3" class="java.lang.String" itemvalue="Python.testthread" />
+      <item index="4" class="java.lang.String" itemvalue="Python.gui_service" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.gui_service" />
-        <item index="1" class="java.lang.String" itemvalue="Python.logging_service" />
-        <item index="2" class="java.lang.String" itemvalue="Python.gui_dummy" />
-        <item index="3" class="java.lang.String" itemvalue="Python.clock_service" />
-        <item index="4" class="java.lang.String" itemvalue="Python.text_to_speech_service" />
+        <item index="0" class="java.lang.String" itemvalue="Python.notification_service" />
+        <item index="1" class="java.lang.String" itemvalue="Python.gui_service" />
+        <item index="2" class="java.lang.String" itemvalue="Python.testthread" />
+        <item index="3" class="java.lang.String" itemvalue="Python.connect_service" />
+        <item index="4" class="java.lang.String" itemvalue="Python.b" />
       </list>
     </recent_temporary>
   </component>
@@ -475,31 +461,67 @@
       <option name="project" value="LOCAL" />
       <updated>1519987144664</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add custom logging service format and add String replace String number.">
+      <created>1523700797108</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1523700797109</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20121029" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22087745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58132046" sideWeight="0.5060514" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30273753" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30273753" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39774558" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58132046" sideWeight="0.5060514" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30273753" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19894099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39774558" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -538,22 +560,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../katifinal-20171122T135148Z-001/katifinal/stepmotor.py" />
-    <entry file="file://$PROJECT_DIR$/connect_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mod test.py" />
-    <entry file="file://$PROJECT_DIR$/notification_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4777">
-          <caret line="288" column="53" lean-forward="false" selection-start-line="288" selection-start-column="53" selection-end-line="288" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testgui/testframe.py" />
     <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -644,13 +650,6 @@
     <entry file="file://$PROJECT_DIR$/log/socket/myapp.log" />
     <entry file="file://$PROJECT_DIR$/log/main/myapp.log" />
     <entry file="file://$PROJECT_DIR$/myapp.log" />
-    <entry file="file://$PROJECT_DIR$/connect_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setting_service.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -660,13 +659,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/run_service.py" />
-    <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="91" column="16" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/text_to_speech_service.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3638">
@@ -674,41 +666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infrared_dummy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notification_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/language_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clock_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7599">
-          <caret line="461" column="66" lean-forward="true" selection-start-line="461" selection-start-column="66" selection-end-line="461" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/clock_service2.py" />
+    <entry file="file://$PROJECT_DIR$/variable_service.py" />
+    <entry file="file://$PROJECT_DIR$/a.py" />
+    <entry file="file://$PROJECT_DIR$/b.py" />
     <entry file="file://$PROJECT_DIR$/sensor_dummy_gui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
@@ -719,53 +680,103 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/serial_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="221">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gui_dummy.py">
+    <entry file="file://$PROJECT_DIR$/socket_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        <state relative-caret-position="-263">
+          <caret line="128" column="28" lean-forward="true" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testthread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stepmotor_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="87" column="17" lean-forward="true" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gui_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-807">
-          <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+        <state relative-caret-position="-1029">
+          <caret line="65" column="31" lean-forward="true" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clock_service2.py">
+    <entry file="file://$PROJECT_DIR$/gui_dummy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="419" column="16" lean-forward="false" selection-start-line="419" selection-start-column="16" selection-end-line="419" selection-end-column="65" />
+        <state relative-caret-position="153">
+          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/language_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrared_dummy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logging_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
+        <state relative-caret-position="85">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clock_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/connect_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="17" column="80" lean-forward="false" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/socket_service.py">
+    <entry file="file://$PROJECT_DIR$/notification_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="177" column="55" lean-forward="false" selection-start-line="177" selection-start-column="55" selection-end-line="177" selection-end-column="55" />
-          <folding />
+        <state relative-caret-position="181">
+          <caret line="1184" column="19" lean-forward="true" selection-start-line="1184" selection-start-column="19" selection-end-line="1184" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
