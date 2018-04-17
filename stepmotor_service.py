@@ -7,15 +7,26 @@ import connect_service
 from threading import Thread
 import pymysql
 import notification_service
+import serial_service
 
     
 def pill_dispenser(slot_id):
     if check_num_of_pill(get_pill_id_with_slot_id(slot_id)):
+        move_step_motor(slot_id)
         print("dispensing..")
         update_pill(get_pill_id_with_slot_id(slot_id))    
     else:
         print("pill out of stock")
 
+def move_step_motor(slot_id):
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)    
+    cur.execute("SELECT * FROM slot INNER JOIN pill ON slot.Pill_id = pill.Pill_id WHERE Slot_id = '"+str(slot_id)+"'")
+    for r in cur:
+        serial_service.moving_step_motor(r['Slot_num'],r['Pill_dispenseramount'])
+    cur.close()
+    conn.close()
+        
 def pill_dispenser_with_schedule_id(schedule_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
@@ -79,6 +90,7 @@ def check_num_of_pill(pill_id):
               return False
             finally:
               notification_service.sent_all_pill_out_of_stock_in_background(pill_id)
+            
         else:
             if r['Pill_left'] < 5:
               try:

@@ -1,0 +1,8 @@
+2018-04-18 03:59:03,943*,*[ERROR]:*,*ProgrammingError: (1146, "Table 'kati.message_firebase_notification_sent_error_log' doesn't exist")
+2018-04-18 03:59:04,082*,*[INFO]:*,*Open main GUI.
+2018-04-18 04:00:08,882*,*[ERROR]:*,*ProgrammingError: (1146, "Table 'kati.message_firebase_notification_sent_error_log' doesn't exist")
+2018-04-18 04:00:09,095*,*[INFO]:*,*Open main GUI.
+2018-04-18 04:09:41,969*,*[INFO]:*,*Open main GUI.
+2018-04-18 04:13:59,558*,*[INFO]:*,*Open main GUI.
+2018-04-18 04:14:48,741*,*[ERROR]:*,*OSError: [Errno 98] Address already in use
+2018-04-18 04:14:49,069*,*[INFO]:*,*Open main GUI.
