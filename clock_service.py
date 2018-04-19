@@ -445,7 +445,7 @@ class Start_clock_Thread(core.QThread):
                 Main_log.logger.info("Kati do schedule notification.")
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
-                notification_service.sent_firebase_message_notification_in_background(language_service.get_it_time_to_take_medicine())
+                notification_service.sent_all_schedule_message_in_background()
                 if(self.get_pill_dispenser_with_schedule_sensor_detect(schedule_time)):
                     notification_service.sent_all_behavior_took_pill_in_background(schedule_id)
                     self.set_kati_status("free")
@@ -464,7 +464,7 @@ class Start_clock_Thread(core.QThread):
                 memo_desc = self.memo_desc
                 memo_notification_time = self.memo_notification_time
                 print("ring_memo")
-                notification_service.sent_firebase_message_notification_in_background(memo_desc)
+                notification_service.sent_all_memo_message_in_background(memo_desc)
                 self.emit(core.SIGNAL("dosomething(QString)"), str("3" + memo_desc))
                 self.start_infrared_count_detect_memo(memo_notification_time,memo_desc)
                 text_to_speech_service.stop()

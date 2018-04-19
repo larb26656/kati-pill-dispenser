@@ -6,6 +6,14 @@ from time import localtime, strftime
 import time
 import threading
 import setting_service
+import json
+import ast
+
+def get_json_format(data,result):
+    return json.dumps({"data": data, "result": result}, ensure_ascii=False)
+
+def get_dict_from_json(json_data):
+    return ast.literal_eval(json_data)
 
 def get_date_time_short():
     return str(strftime("%Y%m%d%H%M%S", localtime()))
@@ -234,16 +242,16 @@ def get_one_pill_english_commonname_with_behavior_id(behavior_id):
     cur.close()
     conn.close()
 
-def get_pill_out_of_stock_firebase_database_sent_error_log_dict():
+def get_firebase_database_sent_error_log_dict():
     count = 0
     dict = {}
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `pill_log_firebase_database_sent_error_log` INNER JOIN pill_log ON pill_log_firebase_database_sent_error_log.Pill_log_id = pill_log.Pill_log_id INNER JOIN outsider ON pill_log_firebase_database_sent_error_log.Outsider_id = outsider.Outsider_id WHERE Pill_log_type = 'outofstock'")
+    cur.execute("SELECT * FROM `firebase_error_log` WHERE Firebase_error_log_service = 'database'")
     numrows = int(cur.rowcount)
     if(numrows >= 1):
         for r in cur:
-            dict[count]=[str(r['Pill_log_firebase_database_sent_error_log_id']),str(r['Pill_log_id']),str(r['Outsider_token'])]
+            dict[count]=[str(r['Firebase_error_log_id']),str(r['Firebase_error_log_JSON_detail'])]
             count += 1
         return dict
     else:
@@ -251,186 +259,16 @@ def get_pill_out_of_stock_firebase_database_sent_error_log_dict():
     cur.close()
     conn.close()
 
-def get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict():
+def get_firebase_notification_sent_error_log_dict():
     count = 0
     dict = {}
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `pill_log_firebase_database_sent_error_log` INNER JOIN pill_log ON pill_log_firebase_database_sent_error_log.Pill_log_id = pill_log.Pill_log_id INNER JOIN outsider ON pill_log_firebase_database_sent_error_log.Outsider_id = outsider.Outsider_id WHERE Pill_log_type = 'almostoutofstock'")
+    cur.execute("SELECT * FROM `firebase_error_log` WHERE Firebase_error_log_service = 'notification'")
     numrows = int(cur.rowcount)
     if(numrows >= 1):
         for r in cur:
-            dict[count]=[str(r['Pill_log_firebase_database_sent_error_log_id']),str(r['Pill_log_id']),str(r['Outsider_token'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_pill_out_of_stock_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `pill_log_firebase_notification_sent_error_log` INNER JOIN pill_log ON pill_log_firebase_notification_sent_error_log.Pill_log_id = pill_log.Pill_log_id WHERE Pill_log_type = 'outofstock'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Pill_log_firebase_notification_sent_error_log_id']),str(r['Pill_log_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `pill_log_firebase_notification_sent_error_log` INNER JOIN pill_log ON pill_log_firebase_notification_sent_error_log.Pill_log_id = pill_log.Pill_log_id WHERE Pill_log_type = 'almostoutofstock'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Pill_log_firebase_notification_sent_error_log_id']),str(r['Pill_log_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_took_pill_firebase_database_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_database_sent_error_log` INNER JOIN behavior ON behavior_firebase_database_sent_error_log.Behavior_id = behavior.Behavior_id INNER JOIN outsider ON behavior_firebase_database_sent_error_log.Outsider_id = outsider.Outsider_id WHERE Behavior_type = 'tookpill'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_database_sent_error_log_id']),str(r['Behavior_id']),str(r['Outsider_token'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_database_sent_error_log` INNER JOIN behavior ON behavior_firebase_database_sent_error_log.Behavior_id = behavior.Behavior_id INNER JOIN outsider ON behavior_firebase_database_sent_error_log.Outsider_id = outsider.Outsider_id WHERE Behavior_type = 'forgottakepill'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_database_sent_error_log_id']),str(r['Behavior_id']),str(r['Outsider_token'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_forgot_take_pill_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_notification_sent_error_log` INNER JOIN behavior ON behavior_firebase_notification_sent_error_log.Behavior_id = behavior.Behavior_id WHERE Behavior_type = 'forgottakepill' AND Schedule_id != '0' AND Pill_id = '0'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_notification_sent_error_log_id']),str(r['Behavior_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_took_pill_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_notification_sent_error_log` INNER JOIN behavior ON behavior_firebase_notification_sent_error_log.Behavior_id = behavior.Behavior_id WHERE Behavior_type = 'tookpill' AND Schedule_id != '0' AND Pill_id = '0'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_notification_sent_error_log_id']),str(r['Behavior_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_forgot_take_one_pill_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_notification_sent_error_log` INNER JOIN behavior ON behavior_firebase_notification_sent_error_log.Behavior_id = behavior.Behavior_id WHERE Behavior_type = 'forgottakepill' AND Schedule_id = '0' AND Pill_id != '0'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_notification_sent_error_log_id']),str(r['Behavior_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_took_one_pill_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_notification_sent_error_log` INNER JOIN behavior ON behavior_firebase_notification_sent_error_log.Behavior_id = behavior.Behavior_id WHERE Behavior_type = 'tookpill' AND Schedule_id = '0' AND Pill_id != '0'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_notification_sent_error_log_id']),str(r['Behavior_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_behavior_come_but_no_take_pill_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `behavior_firebase_notification_sent_error_log` INNER JOIN behavior ON behavior_firebase_notification_sent_error_log.Behavior_id = behavior.Behavior_id WHERE Behavior_type = 'comebutnotakepill' AND Schedule_id = '0' AND Pill_id = '0'")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Behavior_firebase_notification_sent_error_log_id']),str(r['Behavior_id'])]
-            count += 1
-        return dict
-    else:
-        return None
-    cur.close()
-    conn.close()
-
-def get_message_firebase_notification_sent_error_log_dict():
-    count = 0
-    dict = {}
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `message_firebase_notification_sent_error_log`")
-    numrows = int(cur.rowcount)
-    if(numrows >= 1):
-        for r in cur:
-            dict[count]=[str(r['Message_firebase_notification_sent_error_log_id']),str(r['Message_desc'])]
+            dict[count]=[str(r['Firebase_error_log_id']),str(r['Firebase_error_log_JSON_detail'])]
             count += 1
         return dict
     else:
@@ -450,204 +288,13 @@ def check_outsider():
     cur.close()
     conn.close()
 
-def delete_behavior_firebase_database_sent_error_log(behavior_firebase_database_sent_error_log_id):
+def delete_firebase_error_log(firebase_error_log_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("DELETE FROM behavior_firebase_database_sent_error_log WHERE Behavior_firebase_database_sent_error_log_id = '"+behavior_firebase_database_sent_error_log_id+"'")
+    cur.execute("DELETE FROM firebase_error_log WHERE Firebase_error_log_id = '"+firebase_error_log_id+"'")
     conn.commit()
     cur.close()
     conn.close()
-
-def delete_behavior_firebase_notification_sent_error_log(behavior_firebase_notification_sent_error_log_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("DELETE FROM behavior_firebase_notification_sent_error_log WHERE Behavior_firebase_notification_sent_error_log_id = '"+behavior_firebase_notification_sent_error_log_id+"'")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def delete_pill_log_firebase_database_sent_error_log(pill_log_firebase_database_sent_error_log_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("DELETE FROM pill_log_firebase_database_sent_error_log WHERE Pill_log_firebase_database_sent_error_log_id = '"+pill_log_firebase_database_sent_error_log_id+"'")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def delete_pill_log_firebase_notification_sent_error_log(pill_log_firebase_notification_sent_error_log_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("DELETE FROM pill_log_firebase_notification_sent_error_log WHERE Pill_log_firebase_notification_sent_error_log_id = '"+pill_log_firebase_notification_sent_error_log_id+"'")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def delete_message_firebase_notification_sent_error_log(message_firebase_notification_sent_error_log):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("DELETE FROM message_firebase_notification_sent_error_log WHERE Message_firebase_notification_sent_error_log_id = '"+message_firebase_notification_sent_error_log+"'")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def sent_firebase_pill_out_of_stock_notification(pill_log_id):
-    data_message = {
-        "Title": "<Pill>",
-        "Body_thai": "ยา " + get_pill_thai_commonname_with_pill_log_id(pill_log_id)+" หมด",
-        "Body_english":  get_pill_english_commonname_with_pill_log_id(pill_log_id)+" is out of stock",
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids,data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-    
-def sent_firebase_pill_almost_out_of_stock_notification(pill_log_id):
-    data_message = {
-        "Title": "<Pill>",
-        "Body_thai": "ยา " + get_pill_thai_commonname_with_pill_log_id(pill_log_id)+" ใกล้หมด",
-        "Body_english":  get_pill_english_commonname_with_pill_log_id(pill_log_id)+" is almost out of stock",
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-    
-def sent_firebase_behavior_took_pill_notification(behavior_id):
-    data_message = {
-        "Title": "<Behavior>",
-        "Body_thai": "ผู้ป่วยรับประทานยา " + get_pills_thai_commonname_with_behavior_id(behavior_id),
-        "Body_english": "Patient took a pill " + get_pills_english_commonname_with_behavior_id(behavior_id),
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-
-def sent_firebase_behavior_forgot_take_pill_notification(behavior_id):
-    data_message = {
-        "Title": "<Behavior>",
-        "Body_thai": "ผู้ป่วยลืมรับประทานยา " + get_pills_thai_commonname_with_behavior_id(behavior_id),
-        "Body_english": "Patient forgot to take a pill " + get_pills_english_commonname_with_behavior_id(behavior_id),
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-
-def sent_firebase_behavior_took_one_pill_notification(behavior_id):
-    data_message = {
-        "Title": "<Behavior>",
-        "Body_thai": "ผู้ป่วยรับประทานยา " + get_one_pill_thai_commonname_with_behavior_id(behavior_id),
-        "Body_english": "Patient took a pill " + get_one_pill_english_commonname_with_behavior_id(behavior_id),
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-
-def sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id):
-    data_message = {
-        "Title": "<Behavior>",
-        "Body_thai": "ผู้ป่วยลืมรับประทานยา " + get_one_pill_thai_commonname_with_behavior_id(behavior_id),
-        "Body_english": "Patient forgot to take a pill " + get_one_pill_english_commonname_with_behavior_id(behavior_id),
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-
-def sent_firebase_behavior_come_but_no_take_pill_notification(self):
-    data_message = {
-        "Title": "<Behavior>",
-        "Body_thai": "ผู้ป่วยมาหน้าเครื่องแต่ไม่ได้รับยา",
-        "Body_english": "Patient Come to kati but no take pill.",
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
-        registration_ids = get_available_token_kati_read_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
-    
-def sent_firebase_message_notification(message):
-    data_message = {
-        "Title": "<Message>",
-        "Body": str(message),
-    }
-    try:
-        push_service = connect_service.get_connect_firebase_cloud_message_kati_command()
-        registration_ids = get_available_token_kati_command_list()
-        try:
-            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
-            return True
-        except:
-            setting_service.set_robot_connect_false_status()
-            return False
-    except:
-        setting_service.set_robot_connect_false_status()
-        return False
     
 def insert_pill_out_of_stock_message(pill_id):
     conn = connect_service.get_connect_sql()
@@ -735,46 +382,6 @@ def insert_behavior_notification():
     cur.close()
     conn.close()
 
-def insert_behavior_firebase_database_sent_error_log(behavior_id,outsider_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO behavior_firebase_database_sent_error_log(Behavior_id,Outsider_id) values('"+str(behavior_id)+"','"+str(outsider_id)+"')")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def insert_behavior_firebase_notification_sent_error_log(behavior_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO behavior_firebase_notification_sent_error_log(Behavior_id) values('"+str(behavior_id)+"')")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def insert_pill_log_firebase_notification_sent_error_log(pill_log_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO pill_log_firebase_notification_sent_error_log(Pill_log_id) values('"+str(pill_log_id)+"')")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def insert_pill_log_firebase_database_sent_error_log(pill_log_id,outsider_id):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO pill_log_firebase_database_sent_error_log(Pill_log_id,Outsider_id) values('"+str(pill_log_id)+"','"+str(outsider_id)+"')")
-    conn.commit()
-    cur.close()
-    conn.close()
-
-def insert_message_firebase_notification_sent_error_log(message_desc):
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("INSERT INTO message_firebase_notification_sent_error_log(Message_desc) values('"+str(message_desc)+"')")
-    conn.commit()
-    cur.close()
-    conn.close()
-
 def insert_memo_log(memo_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
@@ -785,7 +392,249 @@ def insert_memo_log(memo_id):
     conn.close()
     return primary_key
 
-def insert_pill_out_of_stock_data(pill_log_id,token):
+def insert_firebase_notification_sent_error_log(json_data):
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("INSERT INTO firebase_error_log(Firebase_error_log_service,Firebase_error_log_JSON_detail) values('notification',\""+str(json_data)+"\")")
+    conn.commit()
+    cur.close()
+    conn.close()
+
+def insert_firebase_database_sent_error_log(json_data):
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("INSERT INTO firebase_error_log(Firebase_error_log_service,Firebase_error_log_JSON_detail) values('database',\""+str(json_data)+"\")")
+    conn.commit()
+    cur.close()
+    conn.close()
+
+def sent_firebase_notification_with_json(json_data):
+    data_message = get_dict_from_json(json_data)
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return True
+        except:
+            setting_service.set_robot_connect_false_status()
+            return False
+    except:
+        setting_service.set_robot_connect_false_status()
+        return False
+
+def sent_firebase_pill_out_of_stock_notification(pill_log_id):
+    data_message = {
+        "Title": "<Pill>",
+        "Body_thai": "ยา " + get_pill_thai_commonname_with_pill_log_id(pill_log_id) + " หมด",
+        "Body_english": get_pill_english_commonname_with_pill_log_id(pill_log_id) + " is out of stock",
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_pill_almost_out_of_stock_notification(pill_log_id):
+    data_message = {
+        "Title": "<Pill>",
+        "Body_thai": "ยา " + get_pill_thai_commonname_with_pill_log_id(pill_log_id) + " ใกล้หมด",
+        "Body_english": get_pill_english_commonname_with_pill_log_id(pill_log_id) + " is almost out of stock",
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_behavior_took_pill_notification(behavior_id):
+    data_message = {
+        "Title": "<Behavior>",
+        "Body_thai": "ผู้ป่วยรับประทานยา " + get_pills_thai_commonname_with_behavior_id(behavior_id),
+        "Body_english": "Patient took a pill " + get_pills_english_commonname_with_behavior_id(behavior_id),
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_behavior_forgot_take_pill_notification(behavior_id):
+    data_message = {
+        "Title": "<Behavior>",
+        "Body_thai": "ผู้ป่วยลืมรับประทานยา " + get_pills_thai_commonname_with_behavior_id(behavior_id),
+        "Body_english": "Patient forgot to take a pill " + get_pills_english_commonname_with_behavior_id(behavior_id),
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_behavior_took_one_pill_notification(behavior_id):
+    data_message = {
+        "Title": "<Behavior>",
+        "Body_thai": "ผู้ป่วยรับประทานยา " + get_one_pill_thai_commonname_with_behavior_id(behavior_id),
+        "Body_english": "Patient took a pill " + get_one_pill_english_commonname_with_behavior_id(behavior_id),
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id):
+    data_message = {
+        "Title": "<Behavior>",
+        "Body_thai": "ผู้ป่วยลืมรับประทานยา " + get_one_pill_thai_commonname_with_behavior_id(behavior_id),
+        "Body_english": "Patient forgot to take a pill " + get_one_pill_english_commonname_with_behavior_id(
+            behavior_id),
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_behavior_come_but_no_take_pill_notification(self):
+    data_message = {
+        "Title": "<Behavior>",
+        "Body_thai": "ผู้ป่วยมาหน้าเครื่องแต่ไม่ได้รับยา",
+        "Body_english": "Patient Come to kati but no take pill.",
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_read()
+        registration_ids = get_available_token_kati_read_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_memo_message_notification(message):
+    data_message = {
+        "Title": "<Message>",
+        "Body_thai": str(message),
+        "Body_english": str(message)
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_command()
+        registration_ids = get_available_token_kati_command_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+
+def sent_firebase_schedule_message_notification():
+    data_message = {
+        "Title": "<Message>",
+        "Body_thai": "ถึงเวลาที่คุณต้องรับประทานยาแล้วกรุณามารับประทานยาด้วยค่ะ",
+        "Body_english": "It's time to take medicine please come to take medicine."
+    }
+    try:
+        push_service = connect_service.get_connect_firebase_cloud_message_kati_command()
+        registration_ids = get_available_token_kati_command_list()
+        try:
+            push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
+            setting_service.set_robot_connect_true_status()
+            return get_json_format(data_message, True)
+        except:
+            setting_service.set_robot_connect_false_status()
+            return get_json_format(data_message, False)
+    except:
+        setting_service.set_robot_connect_false_status()
+        return get_json_format(data_message, False)
+
+def insert_firebase_database_with_json(json_data):
+    data = get_dict_from_json(json_data)
+    token = json.loads(json.dumps(get_dict_from_json(json_data)))['Token']
+    try:
+        firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
+        try:
+            db = firebase.database()
+            try:
+                db.child(str(token+"/pill")).push(data)
+                setting_service.set_robot_connect_true_status()
+                return True
+            except:
+                setting_service.set_robot_connect_false_status()
+                return False
+        except:
+            setting_service.set_robot_connect_false_status()
+            return False
+    except:
+        setting_service.set_robot_connect_false_status()
+        return False
+
+def insert_firebase_pill_out_of_stock_data(pill_log_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -803,18 +652,18 @@ def insert_pill_out_of_stock_data(pill_log_id,token):
             try:
                 db.child(str(token+"/pill")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data,True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
-def insert_pill_almost_out_of_stock_data(pill_log_id,token):
+def insert_firebase_pill_almost_out_of_stock_data(pill_log_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -831,18 +680,18 @@ def insert_pill_almost_out_of_stock_data(pill_log_id,token):
             try:
                 db.child(str(token+"/pill")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
     
-def insert_behavior_took_pill_data(behavior_id,token):
+def insert_firebase_behavior_took_pill_data(behavior_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -859,18 +708,18 @@ def insert_behavior_took_pill_data(behavior_id,token):
             try:
                 db.child(str(token+"/behavior")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
-def insert_behavior_forgot_take_pill_data(behavior_id,token):
+def insert_firebase_behavior_forgot_take_pill_data(behavior_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -887,18 +736,18 @@ def insert_behavior_forgot_take_pill_data(behavior_id,token):
             try:
                 db.child(str(token+"/behavior")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
-def insert_behavior_took_one_pill_data(behavior_id,token):
+def insert_firebase_behavior_took_one_pill_data(behavior_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -915,16 +764,16 @@ def insert_behavior_took_one_pill_data(behavior_id,token):
             try:
                 db.child(str(token+"/behavior")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
 def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
     try:
@@ -943,18 +792,18 @@ def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
             try:
                 db.child(str(token+"/behavior")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
-def insert_behavior_come_but_no_take_pill_data(behavior_id,token):
+def insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, token):
     try:
         firebase = pyrebase.initialize_app(connect_service.get_connect_firebase_real_time_database_kati_read())
         try:
@@ -971,178 +820,150 @@ def insert_behavior_come_but_no_take_pill_data(behavior_id,token):
             try:
                 db.child(str(token+"/behavior")).push(data)
                 setting_service.set_robot_connect_true_status()
-                return True
+                return get_json_format(data, True)
             except:
                 setting_service.set_robot_connect_false_status()
-                return False
+                return get_json_format(data, False)
         except:
             setting_service.set_robot_connect_false_status()
-            return False
+            return get_json_format(data, False)
     except:
         setting_service.set_robot_connect_false_status()
-        return False
+        return get_json_format(data, False)
 
 
 def sent_all_pill_out_of_stock(pill_id):
     pill_log_id = insert_pill_out_of_stock_message(pill_id)
     insert_pill_log_notification()
     if(check_outsider()):
-        if(sent_firebase_pill_out_of_stock_notification(pill_log_id)):
+        json_sent_firebase_pill_out_of_stock_notification = json.loads(sent_firebase_pill_out_of_stock_notification(pill_log_id))
+        if(json_sent_firebase_pill_out_of_stock_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                print("loop")
-                if(insert_pill_out_of_stock_data(pill_log_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_pill_out_of_stock_data = json.loads(insert_firebase_pill_out_of_stock_data(pill_log_id, get_available_token_kati_read_dict().get(i)[1]))
+                if(json_insert_pill_out_of_stock_data['result']):
                     pass
                 else:
-                    insert_pill_log_firebase_database_sent_error_log(pill_log_id, get_available_token_kati_read_dict().get(i)[0])
-                    print("notpass")
+                    insert_firebase_database_sent_error_log(json_insert_pill_out_of_stock_data['data'])
         else:
-            insert_pill_log_firebase_notification_sent_error_log(pill_log_id)
-            print("notpass")
+            insert_firebase_notification_sent_error_log(json_sent_firebase_pill_out_of_stock_notification['data'])
 
 def sent_all_pill_almost_out_of_stock(pill_id):
     pill_log_id = insert_pill_almost_out_of_stock_message(pill_id)
     insert_pill_log_notification()
     if(check_outsider()):
-        if(sent_firebase_pill_almost_out_of_stock_notification(pill_log_id)):
-            print("pass")
+        json_sent_firebase_pill_almost_out_of_stock_notification = json.loads(sent_firebase_pill_almost_out_of_stock_notification(pill_log_id))
+        if(json_sent_firebase_pill_almost_out_of_stock_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                if (insert_pill_almost_out_of_stock_data(pill_log_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_firebase_pill_almost_out_of_stock_data = json.loads(insert_firebase_pill_almost_out_of_stock_data(pill_log_id,get_available_token_kati_read_dict().get(i)[1]))
+                if (json_insert_firebase_pill_almost_out_of_stock_data['result']):
                     pass
             else:
-                insert_pill_log_firebase_database_sent_error_log(pill_log_id, get_available_token_kati_read_dict().get(i)[0])
+                insert_firebase_database_sent_error_log(json_insert_firebase_pill_almost_out_of_stock_data['data'])
         else:
-            insert_pill_log_firebase_notification_sent_error_log(pill_log_id)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_pill_almost_out_of_stock_notification['data'])
       
 def sent_all_behavior_took_pill(schedule_id):
     behavior_id = insert_behavior_took_pill_message(schedule_id)
     insert_behavior_notification()
     if(check_outsider()):
-        if (sent_firebase_behavior_took_pill_notification(behavior_id)):
-            print("pass")
+        json_sent_firebase_behavior_took_pill_notification = json.loads(sent_firebase_behavior_took_pill_notification(behavior_id))
+        if (json_sent_firebase_behavior_took_pill_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                print(get_available_token_kati_read_dict().get(i)[0])
-                if(insert_behavior_took_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_firebase_behavior_took_pill_data = json.loads(insert_firebase_behavior_took_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+                if(json_insert_firebase_behavior_took_pill_data['result']):
                     pass
                 else:
-                    insert_behavior_firebase_database_sent_error_log(behavior_id, get_available_token_kati_read_dict().get(i)[0])
+                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_pill_data['data'])
         else:
-            insert_behavior_firebase_notification_sent_error_log(behavior_id)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_took_pill_notification['data'])
       
 def sent_all_behavior_forgot_take_pill(schedule_id):
     behavior_id = insert_behavior_forgot_take_pill_message(schedule_id)
     insert_behavior_notification()
     if(check_outsider()):
-        if (sent_firebase_behavior_forgot_take_pill_notification(behavior_id)):
-            print("pass")
+        json_sent_firebase_behavior_forgot_take_pill_notification = json.loads(sent_firebase_behavior_forgot_take_pill_notification(behavior_id))
+        if (json_sent_firebase_behavior_forgot_take_pill_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                if(insert_behavior_forgot_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_firebase_behavior_forgot_take_pill_data = json.loads(insert_firebase_behavior_forgot_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+                if(json_insert_firebase_behavior_forgot_take_pill_data['result']):
                     pass
                 else:
-                    insert_behavior_firebase_database_sent_error_log(behavior_id, get_available_token_kati_read_dict().get(i)[0])
+                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_forgot_take_pill_data['data'])
         else:
-            insert_behavior_firebase_notification_sent_error_log(behavior_id)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_forgot_take_pill_notification['data'])
 
 def sent_all_behavior_took_one_pill(pill_id):
     behavior_id = insert_behavior_took_one_pill_message(pill_id)
     insert_behavior_notification()
     if (check_outsider()):
-        if (sent_firebase_behavior_took_one_pill_notification(behavior_id)):
-            print("pass")
+        json_sent_firebase_behavior_took_one_pill_notification = json.loads(sent_firebase_behavior_took_one_pill_notification(behavior_id))
+        if (json_sent_firebase_behavior_took_one_pill_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                if (insert_behavior_took_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_firebase_behavior_took_one_pill_data = json.loads(insert_firebase_behavior_took_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+                if (json_insert_firebase_behavior_took_one_pill_data['result']):
                     pass
                 else:
-                    insert_behavior_firebase_database_sent_error_log(behavior_id, get_available_token_kati_read_dict().get(i)[0])
+                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_one_pill_data['data'])
         else:
-            insert_behavior_firebase_notification_sent_error_log(behavior_id)
-
+            insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_took_one_pill_notification['data'])
 
 def sent_all_behavior_forgot_take_one_pill(pill_id):
     behavior_id = insert_behavior_forgot_take_one_pill_message(pill_id)
     insert_behavior_notification()
     if (check_outsider()):
-        if (sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id)):
-            print("pass")
+        json_sent_firebase_behavior_forgot_take_one_pill_notification = json.loads(sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id))
+        if (json_sent_firebase_behavior_forgot_take_one_pill_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                if (insert_behavior_forgot_take_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_behavior_forgot_take_one_pill_data = json.loads(insert_behavior_forgot_take_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+                if (json_insert_behavior_forgot_take_one_pill_data['result']):
                     pass
                 else:
-                    insert_behavior_firebase_database_sent_error_log(behavior_id, get_available_token_kati_read_dict().get(i)[0])
+                    insert_firebase_database_sent_error_log(json_insert_behavior_forgot_take_one_pill_data['data'])
         else:
-            insert_behavior_firebase_notification_sent_error_log(behavior_id)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_forgot_take_one_pill_notification['data'])
 
 def sent_all_behavior_come_but_no_take_pill():
     behavior_id = insert_behavior_come_but_no_take_pill_message()
     insert_behavior_notification()
     if (check_outsider()):
-        if (sent_firebase_behavior_come_but_no_take_pill_notification(behavior_id)):
-            print("pass")
+        json_sent_firebase_behavior_come_but_no_take_pill_notification = json.loads(sent_firebase_behavior_come_but_no_take_pill_notification(behavior_id))
+        if (json_sent_firebase_behavior_come_but_no_take_pill_notification['result']):
             for i in range(len(get_available_token_kati_read_dict())):
-                if (insert_behavior_come_but_no_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1])):
+                json_insert_firebase_behavior_come_but_no_take_pill_data = json.loads(insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+                if (json_insert_firebase_behavior_come_but_no_take_pill_data['result']):
                     pass
                 else:
-                    insert_behavior_firebase_database_sent_error_log(behavior_id, get_available_token_kati_read_dict().get(i)[0])
+                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_come_but_no_take_pill_data['data'])
         else:
-            insert_behavior_firebase_notification_sent_error_log(behavior_id)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_come_but_no_take_pill_notification['data'])
 
-def sent_all_message(message):
+def sent_all_memo_message(message):
     if(check_outsider()):
-        if (sent_firebase_message_notification(message)):
-            print("pass")
+        json_sent_firebase_memo_message_notification = json.loads(sent_firebase_memo_message_notification(message))
+        if (json_sent_firebase_memo_message_notification['result']):
+            pass
         else:
-            insert_message_firebase_notification_sent_error_log(message)
+            insert_firebase_notification_sent_error_log(json_sent_firebase_memo_message_notification['data'])
+
+def sent_all_schedule_message():
+    if(check_outsider()):
+        json_sent_firebase_schedule_message_notification = json.loads(sent_firebase_schedule_message_notification())
+        if (json_sent_firebase_schedule_message_notification['result']):
+            pass
+        else:
+            insert_firebase_notification_sent_error_log(json_sent_firebase_schedule_message_notification['data'])
 
 def sent_all_data_error_data_again():
-    if get_pill_out_of_stock_firebase_database_sent_error_log_dict() is not None:
-        for i in range(len(get_pill_out_of_stock_firebase_database_sent_error_log_dict())):
-            if(insert_pill_out_of_stock_data(get_pill_out_of_stock_firebase_database_sent_error_log_dict().get(i)[1],get_pill_out_of_stock_firebase_database_sent_error_log_dict().get(i)[2])):
-                delete_pill_log_firebase_database_sent_error_log(get_pill_out_of_stock_firebase_database_sent_error_log_dict().get(i)[0])
-    if get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict() is not None:
-        for i in range(len(get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict())):
-            if(insert_pill_out_of_stock_data(get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict().get(i)[1], get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict().get(i)[2])):
-                delete_pill_log_firebase_database_sent_error_log(get_pill_almost_out_of_stock_firebase_database_sent_error_log_dict().get(i)[0])
-    if get_pill_out_of_stock_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_pill_out_of_stock_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_pill_out_of_stock_notification(get_pill_out_of_stock_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_pill_log_firebase_notification_sent_error_log(get_pill_out_of_stock_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_pill_almost_out_of_stock_notification(get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_pill_log_firebase_notification_sent_error_log(get_pill_almost_out_of_stock_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict())):
-            if(insert_behavior_forgot_take_pill_data(get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict().get(i)[1],get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict().get(i)[2])):
-                delete_behavior_firebase_database_sent_error_log(get_behavior_forgot_take_pill_firebase_database_sent_error_log_dict().get(i)[0])
-    if get_behavior_took_pill_firebase_database_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_took_pill_firebase_database_sent_error_log_dict())):
-            if(insert_behavior_took_pill_data(get_behavior_took_pill_firebase_database_sent_error_log_dict().get(i)[1],get_behavior_took_pill_firebase_database_sent_error_log_dict().get(i)[2])):
-                delete_behavior_firebase_database_sent_error_log(get_behavior_took_pill_firebase_database_sent_error_log_dict().get(i)[0])
-    if get_behavior_forgot_take_pill_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_forgot_take_pill_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_behavior_forgot_take_pill_notification(get_behavior_forgot_take_pill_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_behavior_firebase_notification_sent_error_log(get_behavior_forgot_take_pill_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_behavior_took_pill_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_took_pill_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_behavior_took_pill_notification(get_behavior_took_pill_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_behavior_firebase_notification_sent_error_log(get_behavior_took_pill_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_behavior_forgot_take_one_pill_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_forgot_take_one_pill_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_behavior_forgot_take_one_pill_notification(get_behavior_forgot_take_one_pill_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_behavior_firebase_notification_sent_error_log(get_behavior_forgot_take_one_pill_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_behavior_took_one_pill_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_took_one_pill_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_behavior_took_one_pill_notification(get_behavior_took_one_pill_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_behavior_firebase_notification_sent_error_log(get_behavior_took_one_pill_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_behavior_come_but_no_take_pill_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_behavior_come_but_no_take_pill_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_behavior_come_but_no_take_pill_notification(get_behavior_come_but_no_take_pill_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_behavior_firebase_notification_sent_error_log(get_behavior_come_but_no_take_pill_firebase_notification_sent_error_log_dict().get(i)[0])
-    if get_message_firebase_notification_sent_error_log_dict() is not None:
-        for i in range(len(get_message_firebase_notification_sent_error_log_dict())):
-            if(sent_firebase_message_notification(get_message_firebase_notification_sent_error_log_dict().get(i)[1])):
-                delete_message_firebase_notification_sent_error_log(get_message_firebase_notification_sent_error_log_dict().get(i)[0])
-
-
+    firebase_notification_sent_error_log_dict = get_firebase_notification_sent_error_log_dict()
+    if firebase_notification_sent_error_log_dict is not None:
+        for i in range(len(firebase_notification_sent_error_log_dict)):
+            if(sent_firebase_notification_with_json(firebase_notification_sent_error_log_dict.get(i)[1])):
+                delete_firebase_error_log(firebase_notification_sent_error_log_dict.get(i)[0])
+    firebase_database_sent_error_log_dict = get_firebase_database_sent_error_log_dict()
+    if firebase_database_sent_error_log_dict is not None:
+        for i in range(len(firebase_database_sent_error_log_dict)):
+            if(insert_firebase_database_with_json(firebase_database_sent_error_log_dict.get(i)[1])):
+                delete_firebase_error_log(firebase_database_sent_error_log_dict.get(i)[0])
 
 def sent_all_pill_out_of_stock_in_background(pill_id):
     sent_pill_out_of_stock_thread = threading.Thread(target=sent_all_pill_out_of_stock , args=(pill_id,))
@@ -1172,9 +993,13 @@ def sent_all_behavior_come_but_no_take_pill_in_background():
     sent_behavior_come_but_no_take_pill_thread = threading.Thread(target=sent_all_behavior_come_but_no_take_pill)
     sent_behavior_come_but_no_take_pill_thread.start()
     
-def sent_firebase_message_notification_in_background(message):
-    sent_firebase_message_notification_thread = threading.Thread(target=sent_all_message , args=(message,))
-    sent_firebase_message_notification_thread.start()
+def sent_all_memo_message_in_background(message):
+    sent_all_memo_message_thread = threading.Thread(target=sent_all_memo_message , args=(message,))
+    sent_all_memo_message_thread.start()
+
+def sent_all_schedule_message_in_background():
+    sent_all_schedule_message_thread = threading.Thread(target=sent_all_schedule_message)
+    sent_all_schedule_message_thread.start()
 
 def sent_all_data_error_data_again_in_background():
     sent_data_error_data_again_thread = threading.Thread(target=sent_all_data_error_data_again)
@@ -1187,3 +1012,5 @@ class Sent_all_data_error_Thread(core.QThread):
             time.sleep(15)
 
 
+sent_all_memo_message_in_background("test")
+#sent_all_data_error_data_again_in_background()
