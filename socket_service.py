@@ -5,7 +5,7 @@ import pymysql
 import text_to_speech_service
 import time
 import stepmotor_service
-import setting_service
+import config_service
 from concurrent.futures import ThreadPoolExecutor
 import language_service
 import json
@@ -21,7 +21,7 @@ app=Flask(__name__)
 def search_data():
         query = str(request.form['text'])
         print(query)
-        if(get_kati_status()=="free"):
+        if(config_service.get_config_robot_status()=="free"):
                 return get_conversation(query)
         else:
                 return get_json_format(language_service.get_kati_is_busy_ans_text, "busy")
@@ -51,78 +51,55 @@ def get_conversation(text):
         if(cur.rowcount > 0):
             for r in cur:
                 if(r['Conversation_type'] == "time"):
-                    set_kati_face_status("talk")
+                    config_service.set_config_robot_face_talk_status()
                     text=text_to_speech_service.get_and_play_with_delay_time_ans()
-                    set_kati_face_status("normal")
+                    config_service.set_config_robot_face_normal_status()
                     Socket_log.logger.info("Receive HTTP time request.")
                     return get_json_format(text, "time")
                 elif(r['Conversation_type'] == "date"):
-                    set_kati_face_status("talk")
+                    config_service.set_config_robot_face_talk_status()
                     text=text_to_speech_service.get_and_play_with_delay_date_ans()
-                    set_kati_face_status("normal")
+                    config_service.set_config_robot_face_normal_status()
                     Socket_log.logger.info("Receive HTTP date request.")
                     return get_json_format(text, "date")
                 elif(r['Conversation_type'] == "weather"):
-                    set_kati_face_status("talk")
+                    config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_weather_ans()
-                    set_kati_face_status("normal")
+                    config_service.set_config_robot_face_normal_status()
                     Socket_log.logger.info("Receive HTTP weather request.")
                     return get_json_format(text, "weather")
                 elif(r['Conversation_type'] == "calculator"):
-                    set_kati_face_status("talk")
+                    config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_calculator_enable_ans()
-                    set_kati_face_status("normal")
+                    config_service.set_config_robot_face_normal_status()
                     executor.submit(calculator_enable)
                     Socket_log.logger.info("Receive HTTP calculator request.")
                     return get_json_format(text, "calculator")
                 elif(r['Conversation_type'] == "pill_dispenser"):
                     if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
                         text = language_service.get_and_play_with_delay_pill_found_ans_text()
-                        setting_service.set_pill_dispenser_true_status(str(r['Pill_id']))
+                        config_service.set_config_pill_dispenser_true_status(str(r['Pill_id']))
                     else:
-                        set_kati_face_status("talk")
+                        config_service.set_config_robot_face_talk_status()
                         text = text_to_speech_service.get_and_play_with_delay_pill_not_found_ans()
-                        set_kati_face_status("normal")
+                        config_service.set_config_robot_face_normal_status()
                     Socket_log.logger.info("Receive HTTP pill dispenser request.")
                     return get_json_format(text, "pill_dispenser")
                 elif(r['Conversation_type'] == "memo"):
-                    set_kati_face_status("talk")
+                    config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_memo_enable_ans()
-                    set_kati_face_status("normal")
+                    config_service.set_config_robot_face_normal_status()
                     executor.submit(memo_enable)
                     Socket_log.logger.info("Receive HTTP memo request.")
                     return get_json_format(text, "memo")
         else:
-            set_kati_face_status("talk")
+            config_service.set_config_robot_face_talk_status()
             text = text_to_speech_service.get_and_play_with_delay_command_not_found_ans()
-            set_kati_face_status("normal")
+            config_service.set_config_robot_face_normal_status()
             Socket_log.logger.warning("Receive HTTP unknown request.")
             return get_json_format(text, "command_not_found")
         cur.close()
         conn.close()
-
-def set_kati_status(text):
-        f = open('data/kati_status.txt','w',encoding='utf-8')
-        f.write(text)
-        f.close
-        
-def get_kati_status():
-        f = open('data/kati_status.txt','r',encoding='utf-8')
-        data = f.read()
-        return data
-        f.close()
-        
-def set_kati_face_status(text):
-        f = open('data/kati_face_status.txt','w',encoding='utf-8')
-        f.write(text)
-        f.close
-        
-def get_kati_face_status():
-        f = open('data/kati_face_status.txt','r',encoding='utf-8')
-        data = f.read()
-        return data
-        f.close()
-
 def calculator_enable():
     global calculator_enable_status
     calculator_enable_status = True
@@ -165,15 +142,15 @@ def calculator(quest):
     question = question.replace("ล้าน", "1000000")
     try:
         calculator_enable_status = False
-        set_kati_face_status("talk")
+        config_service.set_config_robot_face_talk_status()
         text = text_to_speech_service.get_and_play_with_delay_number_ans(str(eval(question)))
-        set_kati_face_status("normal")
+        config_service.set_config_robot_face_normal_status()
         return get_json_format(text, "calculator_success")
 
     except SyntaxError:
-        set_kati_face_status("talk")
+        config_service.set_config_robot_face_talk_status()
         text = text_to_speech_service.get_and_play_with_delay_calculator_disable_ans()
-        set_kati_face_status("normal")
+        config_service.set_config_robot_face_normal_status()
         calculator_enable_status = False
         return get_json_format(text, "calculator_error")
 

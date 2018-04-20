@@ -8,7 +8,7 @@ from PyQt4.QtWebKit import QWebView
 import threading
 import notification_service
 import clock_service
-import setting_service
+import config_service
 import sys
 import socket
 import os.path
@@ -27,9 +27,9 @@ class MainApp(gui.QWidget):
         self.web_view.setGeometry(80, 80, 480, 256)
         #self.web_view.showMaximized()
         if(self.is_connected()):
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
         else:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
         self.thread.start()
         self.thread2.start()
         self.connect(self.thread, core.SIGNAL("dosomething(QString)"), self.doing)

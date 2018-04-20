@@ -5,7 +5,7 @@ import pyrebase
 from time import localtime, strftime
 import time
 import threading
-import setting_service
+import config_service
 import json
 import ast
 
@@ -415,13 +415,13 @@ def sent_firebase_notification_with_json(json_data):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return True
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return False
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return False
 
 def sent_firebase_pill_out_of_stock_notification(pill_log_id):
@@ -435,13 +435,13 @@ def sent_firebase_pill_out_of_stock_notification(pill_log_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -456,13 +456,13 @@ def sent_firebase_pill_almost_out_of_stock_notification(pill_log_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -477,13 +477,13 @@ def sent_firebase_behavior_took_pill_notification(behavior_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -498,13 +498,13 @@ def sent_firebase_behavior_forgot_take_pill_notification(behavior_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -519,13 +519,13 @@ def sent_firebase_behavior_took_one_pill_notification(behavior_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -541,13 +541,13 @@ def sent_firebase_behavior_forgot_take_one_pill_notification(behavior_id):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -562,13 +562,13 @@ def sent_firebase_behavior_come_but_no_take_pill_notification(self):
         registration_ids = get_available_token_kati_read_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -583,13 +583,13 @@ def sent_firebase_memo_message_notification(message):
         registration_ids = get_available_token_kati_command_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 
@@ -604,13 +604,13 @@ def sent_firebase_schedule_message_notification():
         registration_ids = get_available_token_kati_command_list()
         try:
             push_service.multiple_devices_data_message(registration_ids=registration_ids, data_message=data_message)
-            setting_service.set_robot_connect_true_status()
+            config_service.set_config_robot_connect_true_status()
             return get_json_format(data_message, True)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data_message, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data_message, False)
 
 def insert_firebase_database_with_json(json_data):
@@ -622,16 +622,16 @@ def insert_firebase_database_with_json(json_data):
             db = firebase.database()
             try:
                 db.child(str(token+"/pill")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return True
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return False
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return False
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return False
 
 def insert_firebase_pill_out_of_stock_data(pill_log_id, token):
@@ -651,16 +651,16 @@ def insert_firebase_pill_out_of_stock_data(pill_log_id, token):
             }
             try:
                 db.child(str(token+"/pill")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data,True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 def insert_firebase_pill_almost_out_of_stock_data(pill_log_id, token):
@@ -679,16 +679,16 @@ def insert_firebase_pill_almost_out_of_stock_data(pill_log_id, token):
             }
             try:
                 db.child(str(token+"/pill")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
     
 def insert_firebase_behavior_took_pill_data(behavior_id, token):
@@ -707,16 +707,16 @@ def insert_firebase_behavior_took_pill_data(behavior_id, token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 def insert_firebase_behavior_forgot_take_pill_data(behavior_id, token):
@@ -735,16 +735,16 @@ def insert_firebase_behavior_forgot_take_pill_data(behavior_id, token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 def insert_firebase_behavior_took_one_pill_data(behavior_id, token):
@@ -763,16 +763,16 @@ def insert_firebase_behavior_took_one_pill_data(behavior_id, token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
@@ -791,16 +791,16 @@ def insert_behavior_forgot_take_one_pill_data(behavior_id,token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 def insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, token):
@@ -819,16 +819,16 @@ def insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, token):
             }
             try:
                 db.child(str(token+"/behavior")).push(data)
-                setting_service.set_robot_connect_true_status()
+                config_service.set_config_robot_connect_true_status()
                 return get_json_format(data, True)
             except:
-                setting_service.set_robot_connect_false_status()
+                config_service.set_config_robot_connect_false_status()
                 return get_json_format(data, False)
         except:
-            setting_service.set_robot_connect_false_status()
+            config_service.set_config_robot_connect_false_status()
             return get_json_format(data, False)
     except:
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return get_json_format(data, False)
 
 
