@@ -7,7 +7,7 @@ import language_service
 from langdetect import detect
 from time import strftime
 from weather import Weather
-import setting_service
+import config_service
 import os
 
 mixer.init()
@@ -73,11 +73,11 @@ def set_custom_msg(text_to_talk):
         tts = gTTS(text=text_to_talk, lang=language)
         tts.save(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
         mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
-        setting_service.set_robot_connect_true_status()
+        config_service.set_config_robot_connect_true_status()
         return True
     except:
         mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return False
 
 
@@ -97,12 +97,12 @@ def set_custom_msg(text_to_talk):
     tts = gTTS(text=text_to_talk,lang=language_service.get_lang_short())
     tts.save(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
     mixer.music.load(get_directory_with_set_language('custom_msg_temp.mp3', language_directory))
-    setting_service.set_robot_connect_true_status()
+    config_service.set_config_robot_connect_true_status()
     return True
     except:
         print("aaa")
         mixer.music.load(get_directory_with_set_language('lost_connect_ans.mp3', language_directory))
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
         return False"""
 
 def set_custom_msg_with_filename(text_to_talk,filename):
@@ -153,12 +153,12 @@ def get_and_play_with_delay_number_ans(number):
         mixer.music.load(get_directory('number_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_true_status()
+        config_service.set_config_robot_connect_true_status()
     except:
         mixer.music.load(get_directory('lost_connect_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
     return number
 
 def get_and_play_with_delay_time_ans():
@@ -184,12 +184,12 @@ def get_and_play_with_delay_date_ans():
         mixer.music.load(get_directory('date_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_true_status()
+        config_service.set_config_robot_connect_true_status()
     except:
         mixer.music.load(get_directory('lost_connect_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
     return text
 
 def get_and_play_with_delay_weather_ans():
@@ -204,13 +204,13 @@ def get_and_play_with_delay_weather_ans():
         mixer.music.load(get_directory('temperature_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_true_status()
+        config_service.set_config_robot_connect_true_status()
     except:
         text = "error";
         mixer.music.load(get_directory('lost_connect_ans.mp3'))
         play_with_delay()
         mixer.music.load(get_directory('temp_file.mp3'))
-        setting_service.set_robot_connect_false_status()
+        config_service.set_config_robot_connect_false_status()
     finally:
         return text
 

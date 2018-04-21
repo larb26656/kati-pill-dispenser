@@ -8,8 +8,7 @@ import ultrasonic
 import infrared
 import stepmotor_service
 import notification_service
-import setting_service
-import language_service
+import config_service
 from PyQt4 import QtCore as core
 import time
 from logging_service import Main_log
@@ -30,28 +29,6 @@ class Start_clock_Thread(core.QThread):
 
     def __init__(self, parent=None):
         core.QThread.__init__(self)
-
-    def set_kati_status(self, text):
-        f = open('data/kati_status.txt', 'w', encoding='utf-8')
-        f.write(text)
-        f.close
-
-    def get_kati_status(self):
-        f = open('data/kati_status.txt', 'r', encoding='utf-8')
-        data = f.read()
-        return data
-        f.close()
-
-    def set_kati_face_status(self, text):
-        f = open('data/kati_face_status.txt', 'w', encoding='utf-8')
-        f.write(text)
-        f.close
-
-    def get_kati_face_status(self):
-        f = open('data/kati_face_status.txt', 'r', encoding='utf-8')
-        data = f.read()
-        return data
-        f.close()
 
     def get_time_diff(self, time_alarm):
         fmt = '%Y-%m-%d %H:%M:%S'
@@ -161,17 +138,17 @@ class Start_clock_Thread(core.QThread):
         while True:
             self.get_schedule_time_list()
             self.get_memo_time_list()
-            if (self.schedule_time_diff == "" and self.memo_time_diff == "" and not setting_service.get_pill_dispenser_status()):
-                self.set_kati_status("free")
-            elif (self.schedule_time_diff != "" and self.memo_time_diff == "" and not setting_service.get_pill_dispenser_status()):
-                self.set_kati_status("schedule")
-            elif (self.memo_time_diff != "" and self.schedule_time_diff == "" and not setting_service.get_pill_dispenser_status()):
-                self.set_kati_status("memo")
-            elif (self.memo_time_diff == "" and self.schedule_time_diff == "" and setting_service.get_pill_dispenser_status()):
-                self.set_kati_status("pill_dispenser")
+            if (self.schedule_time_diff == "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                config_service.set_config_robot_free_status()
+            elif (self.schedule_time_diff != "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                config_service.set_config_robot_schedule_status()
+            elif (self.memo_time_diff != "" and self.schedule_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                config_service.set_config_robot_memo_status()
+            elif (self.memo_time_diff == "" and self.schedule_time_diff == "" and config_service.get_config_pill_dispenser_status()):
+                config_service.set_config_robot_pill_dispenser_status()
             else:
-                self.set_kati_status("free")
-            print(self.get_kati_status())
+                config_service.set_config_robot_free_status()
+            print(config_service.get_config_robot_status())
             time.sleep(1)
 
     def start_infrared_count_detect_memo(self,time_notification,memo_desc):
@@ -413,18 +390,18 @@ class Start_clock_Thread(core.QThread):
         self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
 
     def start_clock(self):
-        setting_service.set_pill_dispenser_false_status()
-        self.set_kati_status("free")
-        self.set_kati_face_status("normal")
+        config_service.set_pill_dispenser_false_status()
+        config_service.set_config_robot_free_status()
+        config_service.set_config_robot_face_normal_status()
         global kati_status, speak_status, ultrasonic_step, behavior_status, has_run ,test
         background_thread = Thread(target=self.get_time_list, args=())
         background_thread.start()
         while True:
-            if (self.get_kati_status() == "free"):
+            if (config_service.get_config_robot_status() == "free"):
                 self.face_status = False
                 print(strftime("%Y-%m-%d %H:%M:%S"))
-                if (self.get_kati_face_status() == "normal"):
-                    while (self.get_kati_face_status() == "normal" and self.get_kati_status() == "free"):
+                if (config_service.get_config_robot_face_status() == "normal"):
+                    while (config_service.get_config_robot_face_status() == "normal" and config_service.get_config_robot_status() == "free"):
                         if (self.face_status == False):
                             self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
                             print("1")
@@ -432,8 +409,8 @@ class Start_clock_Thread(core.QThread):
                         print("11")
                         time.sleep(1)
                     self.face_status = False
-                elif (self.get_kati_face_status() == "talk"):
-                    while (self.get_kati_face_status() == "talk" and self.get_kati_status() == "free"):
+                elif (config_service.get_config_robot_face_status() == "talk"):
+                    while (config_service.get_config_robot_face_status() == "talk" and config_service.get_config_robot_status() == "free"):
                         if (self.face_status == False):
                             self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
                             print("2")
@@ -441,45 +418,45 @@ class Start_clock_Thread(core.QThread):
                         print("22")
                         time.sleep(1)
                     self.face_status = False
-            elif (self.get_kati_status() == "schedule"):
+            elif (config_service.get_config_robot_status() == "schedule"):
                 Main_log.logger.info("Kati do schedule notification.")
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
-                notification_service.sent_firebase_message_notification_in_background(language_service.get_it_time_to_take_medicine())
+                notification_service.sent_all_schedule_message_in_background()
                 if(self.get_pill_dispenser_with_schedule_sensor_detect(schedule_time)):
                     notification_service.sent_all_behavior_took_pill_in_background(schedule_id)
-                    self.set_kati_status("free")
                     text_to_speech_service.stop()
                     self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
                 else:
                     notification_service.sent_all_behavior_forgot_take_pill_in_background(schedule_id)
-                    self.set_kati_status("free")
                     text_to_speech_service.stop()
                     self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
-
+                config_service.set_config_robot_free_status()
                 print("stop")
-            elif (self.get_kati_status() == "memo"):
+
+            elif (config_service.get_config_robot_status() == "memo"):
                 Main_log.logger.info("Kati do memo notification.")
                 memo_id = self.memo_id
                 memo_desc = self.memo_desc
                 memo_notification_time = self.memo_notification_time
                 print("ring_memo")
-                notification_service.sent_firebase_message_notification_in_background(memo_desc)
+                notification_service.sent_all_memo_message_in_background(memo_desc)
                 self.emit(core.SIGNAL("dosomething(QString)"), str("3" + memo_desc))
                 self.start_infrared_count_detect_memo(memo_notification_time,memo_desc)
                 text_to_speech_service.stop()
                 print("finish")
                 self.emit(core.SIGNAL("dosomething(QString)"), str("4" + memo_desc))
                 notification_service.insert_memo_log(memo_id)
-                self.set_kati_status("free")
+                config_service.set_config_robot_free_status()
 
-            elif (self.get_kati_status() == "pill_dispenser"):
+            elif (config_service.get_config_robot_status() == "pill_dispenser"):
                 Main_log.logger.info("Kati do pill dispenser")
-                self.pill_id = setting_service.get_pill_id()
+                self.pill_id = config_service.get_config_pill_dispenser_pill_id()
                 self.get_pill_dispenser_with_command_sensor_detect(self.pill_id)
                 notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)
                 text_to_speech_service.stop()
-                setting_service.set_pill_dispenser_false_status()
+                config_service.set_pill_dispenser_false_status()
+                config_service.set_config_robot_free_status()
                 print("stop")
             time.sleep(1)
 

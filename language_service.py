@@ -1,29 +1,19 @@
-import sys
 import pymysql
 import connect_service
+import config_service
 from time import strftime
-import datetime
 
 def get_lang():
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM robot_setting ")
-    for r in cur:
-        return str(r['Robot_lang'])
-    cur.close()
-    conn.close()
+    return config_service.get_config_robot_lang()
 
 def get_lang_short():
-    conn = connect_service.get_connect_sql()
-    cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM robot_setting ")
-    for r in cur:
-        if(str(r['Robot_lang'])=="thai"):
-            return "th"
-        elif(str(r['Robot_lang'])=="english"):
-            return "en"
-    cur.close()
-    conn.close()
+    result = config_service.get_config_robot_lang()
+    if(result == "thai"):
+        return "th"
+    elif (result == "english"):
+        return "en"
+    else:
+        return "th"
 
 def get_provinces_name_english():
     conn = connect_service.get_connect_sql()
