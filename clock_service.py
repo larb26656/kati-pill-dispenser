@@ -4,7 +4,6 @@ import pymysql
 from threading import Thread
 import connect_service
 import text_to_speech_service
-import ultrasonic
 import infrared
 import stepmotor_service
 import notification_service
@@ -167,7 +166,7 @@ class Start_clock_Thread(core.QThread):
                     if (text_to_speech_service.set_custom_msg(memo_desc)):
                         text_to_speech_service.play_loop()
                         self.talk_connect_status = True
-                if (infrared.get_distance_less()):
+                if (infrared.get_is_people_come()):
                     text_to_speech_service.set_reduce_volume()
                     self.count = self.count + 1
                     if (self.count == 3):
@@ -195,7 +194,7 @@ class Start_clock_Thread(core.QThread):
         self.countdown = 3
         while True:
             if (self.sec_count <= self.sec):
-                if (infrared.get_distance_less()):
+                if (infrared.get_is_people_come()):
                     text_to_speech_service.set_reduce_volume()
                     self.count = self.count + 1
                     if (self.count == 3):
@@ -223,7 +222,7 @@ class Start_clock_Thread(core.QThread):
         self.countdown = 3
         while (self.count_status == False):
             if(self.get_time_diff(time_notification) >= 0 and self.get_time_diff(time_notification) <= self.minutes_pill_dispenser_alarm):
-                if (infrared.get_distance_less()):
+                if (infrared.get_is_people_come()):
                     text_to_speech_service.set_reduce_volume()
                     print(self.count)
                     self.count = self.count + 1
@@ -252,7 +251,7 @@ class Start_clock_Thread(core.QThread):
         self.countdown = 3
         while True:
             if(self.sec_count <= self.sec):
-                if (ultrasonic.get_distance_less()):
+                if (infrared.get_is_exist_glass()):
                     text_to_speech_service.set_reduce_volume()
                     print(self.count)
                     self.count = self.count + 1
@@ -285,7 +284,7 @@ class Start_clock_Thread(core.QThread):
         self.alarm_status = False
         while True:
             if(self.sec_count <= self.sec):
-                if (ultrasonic.get_distance_less()):
+                if (infrared.get_is_exist_glass()):
                     text_to_speech_service.set_reduce_volume()
                     print(self.count)
                     self.count = self.count + 1
@@ -324,7 +323,7 @@ class Start_clock_Thread(core.QThread):
         self.countdown = 3
         while True:
             if (self.sec_count <= self.sec):
-                if (ultrasonic.get_distance_more()):
+                if (infrared.get_is_not_exist_glass()):
                     text_to_speech_service.set_reduce_volume()
                     print(self.count)
                     self.count = self.count + 1
