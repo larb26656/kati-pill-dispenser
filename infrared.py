@@ -17,7 +17,7 @@ def get_is_exist_glass():
         return False
 
 def get_is_not_exist_glass():
-    if(GPIO.input(26)==0):
+    if(GPIO.input(19)==0):
         return False
     else:
         return True
