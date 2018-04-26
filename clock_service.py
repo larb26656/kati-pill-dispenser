@@ -390,6 +390,7 @@ class Start_clock_Thread(core.QThread):
         config_service.set_pill_dispenser_false_status()
         config_service.set_config_robot_free_status()
         config_service.set_config_robot_face_normal_status()
+        config_service.set_config_robot_schedule_true_status()
         global kati_status, speak_status, has_run ,test
         background_thread = Thread(target=self.get_time_list, args=())
         background_thread.start()
@@ -418,6 +419,7 @@ class Start_clock_Thread(core.QThread):
             elif (config_service.get_config_robot_status() == "schedule"):
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
+                config_service.set_config_robot_schedule_false_status()
                 notification_service.sent_all_schedule_message_in_background()
                 if(self.get_pill_dispenser_with_schedule_sensor_detect(schedule_time)):
                     notification_service.sent_all_behavior_took_pill_in_background(schedule_id)
@@ -428,11 +430,13 @@ class Start_clock_Thread(core.QThread):
                     text_to_speech_service.stop()
                     self.emit(core.SIGNAL("dosomething(QString)"), str("1"))
                 config_service.set_config_robot_free_status()
+                config_service.set_config_robot_schedule_true_status()
                 print("stop")
 
             elif (config_service.get_config_robot_status() == "memo"):
                 memo_id = self.memo_id
                 memo_desc = self.memo_desc
+                config_service.set_config_robot_schedule_false_status()
                 memo_notification_time = self.memo_notification_time
                 print("ring_memo")
                 notification_service.sent_all_memo_message_in_background(memo_desc)
@@ -443,14 +447,17 @@ class Start_clock_Thread(core.QThread):
                 self.emit(core.SIGNAL("dosomething(QString)"), str("4" + memo_desc))
                 notification_service.insert_memo_log(memo_id)
                 config_service.set_config_robot_free_status()
+                config_service.set_config_robot_schedule_true_status()
 
             elif (config_service.get_config_robot_status() == "pill_dispenser"):
+                config_service.set_config_robot_schedule_false_status()
                 self.pill_id = config_service.get_config_pill_dispenser_pill_id()
                 self.get_pill_dispenser_with_command_sensor_detect(self.pill_id)
                 notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)
                 text_to_speech_service.stop()
                 config_service.set_pill_dispenser_false_status()
                 config_service.set_config_robot_free_status()
+                config_service.set_config_robot_schedule_true_status()
                 print("stop")
             time.sleep(1)
 
