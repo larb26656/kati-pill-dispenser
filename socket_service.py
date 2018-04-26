@@ -9,7 +9,6 @@ import config_service
 from concurrent.futures import ThreadPoolExecutor
 import language_service
 import json
-from logging_service import Socket_log
 
 calculator_enable_status = False
 memo_enable_status = False
@@ -54,26 +53,22 @@ def get_conversation(text):
                     config_service.set_config_robot_face_talk_status()
                     text=text_to_speech_service.get_and_play_with_delay_time_ans()
                     config_service.set_config_robot_face_normal_status()
-                    Socket_log.logger.info("Receive HTTP time request.")
                     return get_json_format(text, "time")
                 elif(r['Conversation_type'] == "date"):
                     config_service.set_config_robot_face_talk_status()
                     text=text_to_speech_service.get_and_play_with_delay_date_ans()
                     config_service.set_config_robot_face_normal_status()
-                    Socket_log.logger.info("Receive HTTP date request.")
                     return get_json_format(text, "date")
                 elif(r['Conversation_type'] == "weather"):
                     config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_weather_ans()
                     config_service.set_config_robot_face_normal_status()
-                    Socket_log.logger.info("Receive HTTP weather request.")
                     return get_json_format(text, "weather")
                 elif(r['Conversation_type'] == "calculator"):
                     config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_calculator_enable_ans()
                     config_service.set_config_robot_face_normal_status()
                     executor.submit(calculator_enable)
-                    Socket_log.logger.info("Receive HTTP calculator request.")
                     return get_json_format(text, "calculator")
                 elif(r['Conversation_type'] == "pill_dispenser"):
                     if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
@@ -83,20 +78,17 @@ def get_conversation(text):
                         config_service.set_config_robot_face_talk_status()
                         text = text_to_speech_service.get_and_play_with_delay_pill_not_found_ans()
                         config_service.set_config_robot_face_normal_status()
-                    Socket_log.logger.info("Receive HTTP pill dispenser request.")
                     return get_json_format(text, "pill_dispenser")
                 elif(r['Conversation_type'] == "memo"):
                     config_service.set_config_robot_face_talk_status()
                     text = text_to_speech_service.get_and_play_with_delay_memo_enable_ans()
                     config_service.set_config_robot_face_normal_status()
                     executor.submit(memo_enable)
-                    Socket_log.logger.info("Receive HTTP memo request.")
                     return get_json_format(text, "memo")
         else:
             config_service.set_config_robot_face_talk_status()
             text = text_to_speech_service.get_and_play_with_delay_command_not_found_ans()
             config_service.set_config_robot_face_normal_status()
-            Socket_log.logger.warning("Receive HTTP unknown request.")
             return get_json_format(text, "command_not_found")
         cur.close()
         conn.close()

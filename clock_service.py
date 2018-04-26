@@ -10,7 +10,6 @@ import notification_service
 import config_service
 from PyQt4 import QtCore as core
 import time
-from logging_service import Main_log
 
 
 class Start_clock_Thread(core.QThread):
@@ -23,8 +22,6 @@ class Start_clock_Thread(core.QThread):
     memo_time_diff = ""
     minutes_pill_dispenser_alarm = 29
     minutes_memo_alarm = 4
-    ultrasonic_step = '1'
-    behavior_status = False
 
     def __init__(self, parent=None):
         core.QThread.__init__(self)
@@ -392,7 +389,7 @@ class Start_clock_Thread(core.QThread):
         config_service.set_pill_dispenser_false_status()
         config_service.set_config_robot_free_status()
         config_service.set_config_robot_face_normal_status()
-        global kati_status, speak_status, ultrasonic_step, behavior_status, has_run ,test
+        global kati_status, speak_status, has_run ,test
         background_thread = Thread(target=self.get_time_list, args=())
         background_thread.start()
         while True:
@@ -418,7 +415,6 @@ class Start_clock_Thread(core.QThread):
                         time.sleep(1)
                     self.face_status = False
             elif (config_service.get_config_robot_status() == "schedule"):
-                Main_log.logger.info("Kati do schedule notification.")
                 schedule_time = self.schedule_time
                 schedule_id = self.schedule_id
                 notification_service.sent_all_schedule_message_in_background()
@@ -434,7 +430,6 @@ class Start_clock_Thread(core.QThread):
                 print("stop")
 
             elif (config_service.get_config_robot_status() == "memo"):
-                Main_log.logger.info("Kati do memo notification.")
                 memo_id = self.memo_id
                 memo_desc = self.memo_desc
                 memo_notification_time = self.memo_notification_time
@@ -449,7 +444,6 @@ class Start_clock_Thread(core.QThread):
                 config_service.set_config_robot_free_status()
 
             elif (config_service.get_config_robot_status() == "pill_dispenser"):
-                Main_log.logger.info("Kati do pill dispenser")
                 self.pill_id = config_service.get_config_pill_dispenser_pill_id()
                 self.get_pill_dispenser_with_command_sensor_detect(self.pill_id)
                 notification_service.sent_all_behavior_took_one_pill_in_background(self.pill_id)

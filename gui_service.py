@@ -13,7 +13,6 @@ import sys
 import socket
 import os.path
 import traceback
-from logging_service import Main_log
 
 class MainApp(gui.QWidget):
     thread = clock_service.Start_clock_Thread()
@@ -110,7 +109,6 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     filename, line, dummy, dummy = traceback.extract_tb( exc_traceback ).pop()
     filename = os.path.basename( filename )
     error    = "%s: %s" % ( exc_type.__name__, exc_value )
-    Main_log.logger.error(error)
 
     QtGui.QMessageBox.critical(None,"Error",
     "<html>A critical error has occured.<br/> "
@@ -143,7 +141,6 @@ form = MainApp()
 install_thread_excepthook()
 sys.excepthook = handle_exception
 form.run()
-Main_log.logger.info("Open main GUI.")
 qtapp.exec_()
 
 """if __name__ == '__main__':

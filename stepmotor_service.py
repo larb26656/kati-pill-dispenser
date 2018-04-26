@@ -92,7 +92,7 @@ def check_num_of_pill(pill_id):
               notification_service.sent_all_pill_out_of_stock_in_background(pill_id)
             
         else:
-            if r['Pill_left'] < 5:
+            if r['Pill_left'] < 5 or r['Pill_left']-r['Pill_dispenseramount'] < 5:
               try:
                 return True
               finally:
