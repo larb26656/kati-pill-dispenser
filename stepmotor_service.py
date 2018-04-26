@@ -105,7 +105,7 @@ def check_num_of_pill(pill_id):
 def check_pill_is_exist_in_system(pill_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `pill`WHERE Pill_id="+str(pill_id)+" AND Pill_visiblestatus = '1'")
+    cur.execute("SELECT * FROM `pill`WHERE Pill_id="+str(pill_id)+" AND Pill_visiblestatus = '1' AND Pill_left > 0")
     if(cur.rowcount > 0):
       for r in cur:
           return True
