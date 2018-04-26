@@ -132,20 +132,21 @@ class Start_clock_Thread(core.QThread):
     def get_time_list(self):
         global kati_status,test
         while True:
-            self.get_schedule_time_list()
-            self.get_memo_time_list()
-            if (self.schedule_time_diff == "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
-                config_service.set_config_robot_free_status()
-            elif (self.schedule_time_diff != "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
-                config_service.set_config_robot_schedule_status()
-            elif (self.memo_time_diff != "" and self.schedule_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
-                config_service.set_config_robot_memo_status()
-            elif (self.memo_time_diff == "" and self.schedule_time_diff == "" and config_service.get_config_pill_dispenser_status()):
-                config_service.set_config_robot_pill_dispenser_status()
-            else:
-                config_service.set_config_robot_free_status()
-            print(config_service.get_config_robot_status())
-            time.sleep(1)
+            if(config_service.get_config_robot_schedule_status()):
+                self.get_schedule_time_list()
+                self.get_memo_time_list()
+                if (self.schedule_time_diff == "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                    config_service.set_config_robot_free_status()
+                elif (self.schedule_time_diff != "" and self.memo_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                    config_service.set_config_robot_schedule_status()
+                elif (self.memo_time_diff != "" and self.schedule_time_diff == "" and not config_service.get_config_pill_dispenser_status()):
+                    config_service.set_config_robot_memo_status()
+                elif (self.memo_time_diff == "" and self.schedule_time_diff == "" and config_service.get_config_pill_dispenser_status()):
+                    config_service.set_config_robot_pill_dispenser_status()
+                else:
+                    config_service.set_config_robot_free_status()
+                print(config_service.get_config_robot_status())
+                time.sleep(1)
 
     def start_infrared_count_detect_memo(self,time_notification,memo_desc):
         global minutes_memo_alarm

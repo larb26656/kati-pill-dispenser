@@ -77,3 +77,20 @@ def set_config_robot_memo_status():
 
 def set_config_robot_pill_dispenser_status():
     set_config_attribute("Robot_status", "pill_dispenser")
+
+def get_config_robot_schedule_status():
+    result = get_config_attribute("Robot_get_schedule_status")
+    if(result == "1"):
+        return True
+    elif (result == "0"):
+        return False
+    else:
+        return False
+    
+def set_config_robot_schedule_true_status():
+    set_config_attribute("Robot_get_schedule_status", "1")
+    
+def set_config_robot_schedule_false_status():
+    set_config_attribute("Robot_get_schedule_status", "0")
+    
+    
