@@ -350,7 +350,7 @@ class Start_clock_Thread(core.QThread):
         text_to_speech_service.set_msg_pill_alarm()
         text_to_speech_service.play_loop()
         if(self.start_infrared_count_detect_pill_dispenser_boolean(time)):
-            self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something_and_talk(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+            self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something_and_talk(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
             self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
             text_to_speech_service.set_msg_pill_dispensing_alarm()
             text_to_speech_service.play_loop()
@@ -358,11 +358,11 @@ class Start_clock_Thread(core.QThread):
             self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
             text_to_speech_service.set_msg_put_glass_near_alarm()
             text_to_speech_service.play_loop()
-            self.start_get_distance_more_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+            self.start_get_distance_more_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
             self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
             text_to_speech_service.set_msg_put_glass_far_after_take_pill_alarm()
             text_to_speech_service.play_loop()
-            self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+            self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
             return True
         else:
             return False
@@ -372,7 +372,7 @@ class Start_clock_Thread(core.QThread):
         text_to_speech_service.set_msg_pill_found_alarm()
         text_to_speech_service.play_loop()
         self.start_infrared_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
-        self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something_and_talk(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+        self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something_and_talk(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
         self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
         text_to_speech_service.set_msg_pill_dispensing_alarm()
         text_to_speech_service.play_loop()
@@ -380,11 +380,11 @@ class Start_clock_Thread(core.QThread):
         self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
         text_to_speech_service.set_msg_put_glass_near_alarm()
         text_to_speech_service.play_loop()
-        self.start_get_distance_more_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+        self.start_get_distance_more_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
         self.emit(core.SIGNAL("dosomething(QString)"), str("2"))
         text_to_speech_service.set_msg_put_glass_far_after_take_pill_alarm()
         text_to_speech_service.play_loop()
-        self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something(1,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
+        self.start_get_distance_less_count_detect_pill_dispenser_with_countdown_do_something(15,notification_service.sent_all_behavior_come_but_no_take_pill_in_background)
 
     def start_clock(self):
         config_service.set_pill_dispenser_false_status()
