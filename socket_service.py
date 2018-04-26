@@ -71,7 +71,7 @@ def get_conversation(text):
                     executor.submit(calculator_enable)
                     return get_json_format(text, "calculator")
                 elif(r['Conversation_type'] == "pill_dispenser"):
-                    if(stepmotor_service.check_pil_exisit_and_num_of_pill(str(r['Pill_id']))):
+                    if(stepmotor_service.check_pill_is_exist(str(r['Pill_id']))):
                         text = language_service.get_and_play_with_delay_pill_found_ans_text()
                         config_service.set_config_pill_dispenser_true_status(str(r['Pill_id']))
                     else:

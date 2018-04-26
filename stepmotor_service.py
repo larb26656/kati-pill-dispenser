@@ -102,7 +102,19 @@ def check_num_of_pill(pill_id):
     cur.close()
     conn.close()
 
-def check_pil_exisit_and_num_of_pill(pill_id):
+def check_pill_is_exist_in_system(pill_id):
+    conn = connect_service.get_connect_sql()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("SELECT * FROM `pill`WHERE Pill_id="+str(pill_id)+" AND Pill_visiblestatus = '1'")
+    if(cur.rowcount > 0):
+      for r in cur:
+          return True
+    else:
+          return False
+    cur.close()
+    conn.close()
+
+def check_pil_is_exist_in_slot(pill_id):
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
     cur.execute("SELECT * FROM `slot`WHERE Pill_id="+str(pill_id)+" AND Slot_visiblestatus = '1' LIMIT 1")
@@ -113,3 +125,13 @@ def check_pil_exisit_and_num_of_pill(pill_id):
           return False
     cur.close()
     conn.close()
+
+def check_pill_is_exist(pill_id):
+    if(check_pill_is_exist_in_system(pill_id)):
+        if(check_pil_is_exist_in_slot(pill_id)):
+            return True
+        else:
+            return False
+    else:
+        return False
+
