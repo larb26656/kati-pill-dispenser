@@ -18,7 +18,7 @@ def get_lang_short():
 def get_provinces_name_english():
     conn = connect_service.get_connect_sql()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM `robot_setting` INNER JOIN provinces ON robot_setting.Provinces_id = provinces.Provinces_id")
+    cur.execute("SELECT * FROM `config` INNER JOIN provinces ON config.Config_value = provinces.Provinces_id WHERE Config_name = 'Robot_provinces_id' AND Config_visiblestatus = '1'")
     for r in cur:
         return str(r['Provinces_name_english'])
     cur.close()
