@@ -841,12 +841,12 @@ def sent_all_pill_out_of_stock(pill_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_pill_out_of_stock_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_pill_out_of_stock_data = json.loads(insert_firebase_pill_out_of_stock_data(pill_log_id, get_available_token_kati_read_dict().get(i)[1]))
-                if(json_insert_pill_out_of_stock_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_pill_out_of_stock_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_pill_out_of_stock_data = json.loads(insert_firebase_pill_out_of_stock_data(pill_log_id, get_available_token_kati_read_dict().get(i)[1]))
+            if(json_insert_pill_out_of_stock_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_pill_out_of_stock_data['data'])
 
 def sent_all_pill_almost_out_of_stock(pill_id):
     pill_log_id = insert_pill_almost_out_of_stock_message(pill_id)
@@ -857,12 +857,12 @@ def sent_all_pill_almost_out_of_stock(pill_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_pill_almost_out_of_stock_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_firebase_pill_almost_out_of_stock_data = json.loads(insert_firebase_pill_almost_out_of_stock_data(pill_log_id,get_available_token_kati_read_dict().get(i)[1]))
-                if (json_insert_firebase_pill_almost_out_of_stock_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_firebase_pill_almost_out_of_stock_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_firebase_pill_almost_out_of_stock_data = json.loads(insert_firebase_pill_almost_out_of_stock_data(pill_log_id,get_available_token_kati_read_dict().get(i)[1]))
+            if (json_insert_firebase_pill_almost_out_of_stock_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_firebase_pill_almost_out_of_stock_data['data'])
       
 def sent_all_behavior_took_pill(schedule_id):
     behavior_id = insert_behavior_took_pill_message(schedule_id)
@@ -873,12 +873,12 @@ def sent_all_behavior_took_pill(schedule_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_took_pill_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_firebase_behavior_took_pill_data = json.loads(insert_firebase_behavior_took_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
-                if(json_insert_firebase_behavior_took_pill_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_pill_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_firebase_behavior_took_pill_data = json.loads(insert_firebase_behavior_took_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+            if(json_insert_firebase_behavior_took_pill_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_pill_data['data'])
       
 def sent_all_behavior_forgot_take_pill(schedule_id):
     behavior_id = insert_behavior_forgot_take_pill_message(schedule_id)
@@ -889,12 +889,12 @@ def sent_all_behavior_forgot_take_pill(schedule_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_forgot_take_pill_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_firebase_behavior_forgot_take_pill_data = json.loads(insert_firebase_behavior_forgot_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
-                if(json_insert_firebase_behavior_forgot_take_pill_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_forgot_take_pill_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_firebase_behavior_forgot_take_pill_data = json.loads(insert_firebase_behavior_forgot_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+            if(json_insert_firebase_behavior_forgot_take_pill_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_firebase_behavior_forgot_take_pill_data['data'])
 
 def sent_all_behavior_took_one_pill(pill_id):
     behavior_id = insert_behavior_took_one_pill_message(pill_id)
@@ -905,12 +905,12 @@ def sent_all_behavior_took_one_pill(pill_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_took_one_pill_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_firebase_behavior_took_one_pill_data = json.loads(insert_firebase_behavior_took_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
-                if (json_insert_firebase_behavior_took_one_pill_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_one_pill_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_firebase_behavior_took_one_pill_data = json.loads(insert_firebase_behavior_took_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+            if (json_insert_firebase_behavior_took_one_pill_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_firebase_behavior_took_one_pill_data['data'])
 
 def sent_all_behavior_forgot_take_one_pill(pill_id):
     behavior_id = insert_behavior_forgot_take_one_pill_message(pill_id)
@@ -921,12 +921,12 @@ def sent_all_behavior_forgot_take_one_pill(pill_id):
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_forgot_take_one_pill_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_behavior_forgot_take_one_pill_data = json.loads(insert_behavior_forgot_take_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
-                if (json_insert_behavior_forgot_take_one_pill_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_behavior_forgot_take_one_pill_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_behavior_forgot_take_one_pill_data = json.loads(insert_behavior_forgot_take_one_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+            if (json_insert_behavior_forgot_take_one_pill_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_behavior_forgot_take_one_pill_data['data'])
 
 def sent_all_behavior_come_but_no_take_pill():
     behavior_id = insert_behavior_come_but_no_take_pill_message()
@@ -937,12 +937,12 @@ def sent_all_behavior_come_but_no_take_pill():
             pass
         else:
             insert_firebase_notification_sent_error_log(json_sent_firebase_behavior_come_but_no_take_pill_notification['data'])
-            for i in range(len(get_available_token_kati_read_dict())):
-                json_insert_firebase_behavior_come_but_no_take_pill_data = json.loads(insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
-                if (json_insert_firebase_behavior_come_but_no_take_pill_data['result']):
-                    pass
-                else:
-                    insert_firebase_database_sent_error_log(json_insert_firebase_behavior_come_but_no_take_pill_data['data'])
+        for i in range(len(get_available_token_kati_read_dict())):
+            json_insert_firebase_behavior_come_but_no_take_pill_data = json.loads(insert_firebase_behavior_come_but_no_take_pill_data(behavior_id, get_available_token_kati_read_dict().get(i)[1]))
+            if (json_insert_firebase_behavior_come_but_no_take_pill_data['result']):
+                pass
+            else:
+                insert_firebase_database_sent_error_log(json_insert_firebase_behavior_come_but_no_take_pill_data['data'])
 
 def sent_all_memo_message(message):
     if(check_outsider()):
